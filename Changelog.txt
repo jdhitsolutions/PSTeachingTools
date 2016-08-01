@@ -1,1 +1,7 @@
 #Changelog for PSTeachingTools
+
+v0.0.1
+initial version with Vegetable commands
+new module manifest
+new README.md
+

@@ -1,11 +1,11 @@
 #requires -version 5.0
 
-#region Main
+#dot source teaching commands and tools
+. $PSScriptRoot\Vegetables.ps1
 
-
-#endregion
 
 #define aliases
 
 #export module members
 
+$func = "Get-Vegetable","Set-Vegetable","New-Vegetable"

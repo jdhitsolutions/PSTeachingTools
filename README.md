@@ -1,5 +1,15 @@
 # PSTeachingTools #
 
+This PowerShell module includes tools and techniques for teaching PowerShell.
+Many of the commands will create a set of sample objects and commands that can
+be used to demonstrate a variety of PowerShell techniques and concepts without 
+having to worry about anything technical like Active Directory, services or 
+file objects.
+
+
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
+
 
 ****************************************************************
 DO NOT USE IN A PRODUCTION ENVIRONMENT UNTIL YOU HAVE TESTED 
