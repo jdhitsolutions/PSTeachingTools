@@ -11,6 +11,7 @@ Enum Status {
     Fried
     Baked
     Roasted
+    Grilled
 }
 
 Enum VegColor {
@@ -164,7 +165,7 @@ Process {
         ($global:myvegetables).where({$_.IsRoot})
     }
     else {
-        Write-Verbose "[PROCESS] Getting all vegetablea"
+        Write-Verbose "[PROCESS] Getting all vegetables"
         $global:myvegetables
     }
 }

@@ -5,6 +5,9 @@
 
 
 #define aliases
+Set-Alias -Name gveg -Value Get-Vegetable
+Set-Alias -Name sveg -Value Set-Vegetable
+Set-Alias -Name nveg -Value New-Vegetable
 
 #export module members
 

@@ -1,5 +1,10 @@
 #Changelog for PSTeachingTools
 
+v0.0.2
+added vegetable markdown help
+created XML help for vegetable commands
+added aliases for vegetable commands
+
 v0.0.1
 initial version with Vegetable commands
 new module manifest
