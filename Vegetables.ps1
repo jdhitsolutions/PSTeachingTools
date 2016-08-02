@@ -228,42 +228,68 @@ End {
 Function New-Vegetable {
 [cmdletbinding()]
 Param(
-[Parameter(Position = 0, Mandatory, HelpMessage = "What is the vegetable name?")]
+[Parameter(
+ Position = 0, 
+ Mandatory, 
+ HelpMessage = "What is the vegetable name?",
+ ValueFromPipelineByPropertyName
+ )]
 [ValidateNotNullorEmpty()]
 [string]$Name,
-[Parameter(Position = 1, Mandatory, HelpMessage = "What is the vegetable color?")]
+[Parameter(
+ Position = 1, 
+ Mandatory, 
+ HelpMessage = "What is the vegetable color?",
+ ValueFromPipelineByPropertyName
+ )]
 [ValidateNotNullorEmpty()]
 [vegcolor]$Color,
+[Parameter(ValueFromPipelineByPropertyName)]
 [ValidateRange(1,20)]
 [int]$Count = 1,
+[Parameter(ValueFromPipelineByPropertyName)]
 [switch]$Root,
 [switch]$Passthru
 )
 
-#get a new code
-$codes = (Get-Vegetable).UPC
-do { $upc = Get-Random -Minimum 4000 -Maximum 4500} until ($codes -notcontains $upc) 
+Begin {
+    Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
+}
 
-$veggie = [vegetable]::new($name,$Root,$color,$UPC)
+Process {
+    #display PSBoundparameters formatted nicely for Verbose output  
+    [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
+    Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | Out-String) `n" 
 
+    #get a new code
+    $codes = (Get-Vegetable).UPC
+    do { $upc = Get-Random -Minimum 4000 -Maximum 4500} until ($codes -notcontains $upc) 
 
-if ($veggie) {
-    $veggie.count = $Count
+    $veggie = [vegetable]::new($name,$Root,$color,$UPC)
 
-    $global:myvegetables+=$veggie
+    if ($veggie) {
+        $veggie.count = $Count
 
-    if ($passthru) {
-      write-output $veggie
+        $global:myvegetables+=$veggie
+
+        if ($passthru) {
+          write-output $veggie
+         }
      }
- }
-else {
-    Write-Warning "Oops. Something unexpected happened."
-}
-}
+    else {
+        Write-Warning "Oops. Something unexpected happened."
+    }
+} #process
+
+End {
+    Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+} #end
+} 
 
 #endregion
 
 #region create some vegetable objects and store them in a global array
+
 $global:myvegetables = @()
 New-Vegetable -name "Corn" -color yellow -count (Get-Random -Minimum 1 -Maximum 20)
 New-Vegetable -name "tomato" -color red -count (Get-Random -Minimum 1 -Maximum 20)

@@ -178,7 +178,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>New-Vegetable</maml:name>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Name</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none"><maml:name>Name</maml:name>
 <maml:Description><maml:para>What is the vegetable name?
 </maml:para>
 </maml:Description>
@@ -187,7 +187,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none"><maml:name>Color</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none"><maml:name>Color</maml:name>
 <maml:Description><maml:para>What is the vegetable color?
 </maml:para>
 </maml:Description>
@@ -204,7 +204,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
-<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>How many vegetables do you want? Pick a number between 1 and 20.
 </maml:para>
 </maml:Description>
@@ -221,7 +221,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <maml:uri /></dev:type>
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
-<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Root</maml:name>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Root</maml:name>
 <maml:Description><maml:para>Indicate that this is a root vegetable.
 </maml:para>
 </maml:Description>
@@ -231,7 +231,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
-<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none"><maml:name>Color</maml:name>
+<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none"><maml:name>Color</maml:name>
 <maml:Description><maml:para>What is the vegetable color?
 </maml:para>
 </maml:Description>
@@ -240,7 +240,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
-<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>How many vegetables do you want? Pick a number between 1 and 20.
 </maml:para>
 </maml:Description>
@@ -249,7 +249,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Name</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none"><maml:name>Name</maml:name>
 <maml:Description><maml:para>What is the vegetable name?
 </maml:para>
 </maml:Description>
@@ -267,7 +267,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <maml:uri /></dev:type>
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
-<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Root</maml:name>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Root</maml:name>
 <maml:Description><maml:para>Indicate that this is a root vegetable.
 </maml:para>
 </maml:Description>
@@ -321,6 +321,12 @@ UPC     Count Name          State    Color
 </maml:para>
 </dev:remarks>
 </command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Import-CSV c:\work\myveggies.csv | New-Vegetable</dev:code>
+<dev:remarks><maml:para>Import a CSV file with headings that match the parameters for New-Vegetable and create new vegetable objects.
+</maml:para>
+</dev:remarks>
+</command:example>
 </command:examples>
 <command:relatedLinks><maml:navigationLink><maml:linkText>Get-Vegetable</maml:linkText>
 <maml:uri></maml:uri>
@@ -370,6 +376,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="false" variableLength="false">Fried</command:parameterValue>
 <command:parameterValue required="false" variableLength="false">Baked</command:parameterValue>
 <command:parameterValue required="false" variableLength="false">Roasted</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Grilled</command:parameterValue>
 </command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
 <dev:type><maml:name>Status</maml:name>
@@ -431,6 +438,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="false" variableLength="false">Fried</command:parameterValue>
 <command:parameterValue required="false" variableLength="false">Baked</command:parameterValue>
 <command:parameterValue required="false" variableLength="false">Roasted</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Grilled</command:parameterValue>
 </command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
 <dev:type><maml:name>Status</maml:name>

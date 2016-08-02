@@ -1,5 +1,10 @@
 #Changelog for PSTeachingTools
 
+v0.0.4
+modified New-Vegetable parameters to accept value by property name
+updated help documents
+updated module zip file
+
 v0.0.3
 updated manifest with GitHub links
 Created PowerShell module zip file

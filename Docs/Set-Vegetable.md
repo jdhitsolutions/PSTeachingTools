@@ -7,25 +7,24 @@ schema: 2.0.0
 # Set-Vegetable
 ## SYNOPSIS
 Set a vegetable property
-
 ## SYNTAX
 
 ### name (Default)
 ```
 Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### input
 ```
 Set-Vegetable [[-InputObject] <Vegetable[]>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf]
- [-Confirm]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Use this command to set vegetable properties. You can either specify a vegetable 
 by name or pipe objects from Get-Vegetable. By default this command does not write
 anything to the pipeline unless you use -Passthru.
-
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
@@ -36,15 +35,15 @@ UPC     Count Name          State    Color
 ---     ----- ----          -----    -----     
 4493        5 eggplant      Roasted  purple
 ```
+
 ### -------------------------- EXAMPLE 2 --------------------------
 ```
-PS C:\> Get-Vegetable pepper | Set-Vegetable -cookingstate steamed 
+PS C:\> Get-Vegetable pepper | Set-Vegetable -cookingstate steamed
 ```
 
 ## PARAMETERS
 
 ### -Confirm
-
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -64,7 +63,7 @@ Set the vegetable's cooking state.
 Type: Status
 Parameter Sets: (All)
 Aliases: 
-Accepted values: Raw, Boiled, Steamed, Sauteed, Fried, Baked, Roasted
+Accepted values: Raw, Boiled, Steamed, Sauteed, Fried, Baked, Roasted, Grilled
 
 Required: False
 Position: Named
@@ -119,7 +118,6 @@ Accept wildcard characters: True
 ```
 
 ### -Passthru
-
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -133,7 +131,6 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -146,6 +143,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 ## INPUTS
 
 ### [Vegetable[]]
@@ -155,11 +154,10 @@ Accept wildcard characters: False
 ### [Vegetable]
 
 ## NOTES
-
 Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
-
 ## RELATED LINKS
+
 [Get-Vegetable]()
 [New-Vegetable]()
 
