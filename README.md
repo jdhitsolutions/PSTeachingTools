@@ -6,6 +6,10 @@ be used to demonstrate a variety of PowerShell techniques and concepts without
 having to worry about anything technical like Active Directory, services or 
 file objects.
 
+![Using objects in the pipeline](https://pbs.twimg.com/media/Co4aMHRWAAIxI1P.jpg)
+
+![setting objects](https://pbs.twimg.com/media/Co4cagxWIAAmR_r.jpg)
+
 The zip file, PSTeachingTools.zip, will contain the most current version of 
 this project as a PowerShell module.
 
