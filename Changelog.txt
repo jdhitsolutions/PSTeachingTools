@@ -1,5 +1,9 @@
 #Changelog for PSTeachingTools
 
+v0.0.3
+updated manifest with GitHub links
+Created PowerShell module zip file
+
 v0.0.2
 added vegetable markdown help
 created XML help for vegetable commands
