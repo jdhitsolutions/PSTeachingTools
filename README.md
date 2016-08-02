@@ -6,6 +6,8 @@ be used to demonstrate a variety of PowerShell techniques and concepts without
 having to worry about anything technical like Active Directory, services or 
 file objects.
 
+The zip file, PSTeachingTools.zip, will contain the most current version of 
+this project as a PowerShell module.
 
 Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
