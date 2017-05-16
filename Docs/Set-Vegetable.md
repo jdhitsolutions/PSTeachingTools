@@ -22,9 +22,7 @@ Set-Vegetable [[-InputObject] <Vegetable[]>] [-Count <Int32>] [-CookingState <St
 ```
 
 ## DESCRIPTION
-Use this command to set vegetable properties. You can either specify a vegetable 
-by name or pipe objects from Get-Vegetable. By default this command does not write
-anything to the pipeline unless you use -Passthru.
+Use this command to set vegetable properties. You can either specify a vegetable by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------

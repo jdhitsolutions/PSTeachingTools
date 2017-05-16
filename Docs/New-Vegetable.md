@@ -14,9 +14,7 @@ New-Vegetable [-Name] <String> [-Color] <VegColor> [-Count <Int32>] [-Root] [-Pa
 ```
 
 ## DESCRIPTION
-Use this command to create a new vegetable object. You must specify a vegetable
-name and color. Note that this command does not write anything to the pipeline 
-unless you use -Passthru.
+Use this command to create a new vegetable object. You must specify a vegetable name and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
@@ -47,8 +45,7 @@ PS C:\> New-Vegetable -name "Sweet Potato" -color orange -root
 PS C:\> Import-CSV c:\work\myveggies.csv | New-Vegetable 
 ```
 
-Import a CSV file with headings that match the parameters for New-Vegetable and
-create new vegetable objects.
+Import a CSV file with headings that match the parameters for New-Vegetable and create new vegetable objects.
 
 ## PARAMETERS
 

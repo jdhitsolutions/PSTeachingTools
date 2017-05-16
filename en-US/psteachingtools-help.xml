@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<helpItems schema="maml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns="http://msh" schema="maml">
 
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Get-Vegetable</command:name>
@@ -20,7 +20,7 @@
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RootOnly</maml:name>
 <maml:Description><maml:para>Only get root vegetables like carrots or turnips.
@@ -39,7 +39,172 @@
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RootOnly</maml:name>
+<maml:Description><maml:para>Only get root vegetables like carrots or turnips.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:parameters>
+<command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues><command:returnValue><dev:type><maml:name>[Vegetable]</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:alertSet><maml:alert><maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+</maml:para>
+</maml:alert>
+</maml:alertSet>
+<command:examples><command:example><maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Get-Vegetable
+
+UPC     Count Name          State    Color     
+---     ----- ----          -----    -----     
+4060       13 Corn          Roasted  yellow    
+4353        9 tomato        Raw      red       
+4234       19 cucumber      Raw      green     
+4493        8 carrot        Raw      orange    
+4107       19 radish        Raw      red       
+4329       18 peas          Steamed  green     
+4083       17 turnip        Boiled   purple    
+4407       13 potato        Fried    brown     
+4119       15 broccoli      Steamed  green     
+4357        4 zucchini      Raw      green     
+4242        7 spinach       Raw      green     
+4256        8 cauliflower   Steamed  white     
+4028       14 pepper        Sauteed  green     
+4448       13 pepper        Sauteed  red       
+4254        9 pepper        Sauteed  yellow    
+4472        5 eggplant      Fried    purple</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Get-Vegetable eggplant
+
+UPC     Count Name          State    Color    
+---     ----- ----          -----    -----
+4472        5 eggplant      Fried    purple</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Get-Vegetable -RootOnly
+
+
+UPC     Count Name          State    Color     
+---     ----- ----          -----    -----     
+4493        8 carrot        Raw      orange    
+4107       19 radish        Raw      red       
+4083       17 turnip        Boiled   purple    
+4407       13 potato        Fried    brown</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Get-Vegetable | Group CookedState
+
+Count Name                      Group                                           
+----- ----                      -----                                           
+    1 Roasted                   {Vegetable}                                     
+    6 Raw                       {Vegetable, Vegetable, Vegetable, Vegetable...} 
+    3 Steamed                   {Vegetable, Vegetable, Vegetable}               
+    1 Boiled                    {Vegetable}                                     
+    2 Fried                     {Vegetable, Vegetable}                          
+    3 Sauteed                   {Vegetable, Vegetable, Vegetable}</dev:code>
+<dev:remarks><maml:para>Group vegetables by their CookedState property. Note that the default output is not necessarily the actual property name. You can only see that by using Get-Member.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 5 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Get-Vegetable | Get-Member
+
+TypeName: Vegetable
+
+Name        MemberType Definition                    
+----        ---------- ----------                    
+Equals      Method     bool Equals(System.Object obj)
+GetHashCode Method     int GetHashCode()             
+GetType     Method     type GetType()                
+Peel        Method     void Peel()                   
+Prepare     Method     void Prepare(Status State)    
+ToString    Method     string ToString()             
+Color       Property   VegColor Color {get;set;}     
+CookedState Property   Status CookedState {get;set;} 
+Count       Property   int Count {get;set;}          
+IsPeeled    Property   bool IsPeeled {get;set;}      
+IsRoot      Property   bool IsRoot {get;set;}        
+Name        Property   string Name {get;set;}        
+UPC         Property   int UPC {get;set;}</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+</command:examples>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Set-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+<maml:navigationLink><maml:linkText>New-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<command:details><command:name>Get-Vegetable</command:name>
+<command:verb>Get</command:verb>
+<command:noun>Vegetable</command:noun>
+<maml:description><maml:para>Get vegetable objects
+</maml:para>
+</maml:description>
+</command:details>
+<maml:description><maml:para>Use this command to retrieve vegetable objects from the local computer. The default is to retrieve all objects but you can select them by name or filter for only root vegetables like carrots.
+</maml:para>
+</maml:description>
+<command:syntax><command:syntaxItem><maml:name>Get-Vegetable</maml:name>
+<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="False" position="0" aliases="none"><maml:name>Name</maml:name>
+<maml:Description><maml:para>The name of a vegetable
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RootOnly</maml:name>
+<maml:Description><maml:para>Only get root vegetables like carrots or turnips.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters><command:parameter required="false" variableLength="true" globbing="true" pipelineInput="False" position="0" aliases="none"><maml:name>Name</maml:name>
+<maml:Description><maml:para>The name of a vegetable
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RootOnly</maml:name>
 <maml:Description><maml:para>Only get root vegetables like carrots or turnips.
@@ -174,7 +339,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>Use this command to create a new vegetable object. You must specify a vegetable name and color. Note that this command does not write anything to the pipeline  unless you use -Passthru.
+<maml:description><maml:para>Use this command to create a new vegetable object. You must specify a vegetable name and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>New-Vegetable</maml:name>
@@ -185,7 +350,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none"><maml:name>Color</maml:name>
 <maml:Description><maml:para>What is the vegetable color?
@@ -202,7 +367,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <command:parameterValue required="true" variableLength="false">VegColor</command:parameterValue>
 <dev:type><maml:name>VegColor</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>How many vegetables do you want? Pick a number between 1 and 20.
@@ -211,7 +376,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 <dev:type><maml:name>Int32</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
 <maml:Description><maml:para>
@@ -238,7 +403,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <command:parameterValue required="true" variableLength="false">VegColor</command:parameterValue>
 <dev:type><maml:name>VegColor</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>How many vegetables do you want? Pick a number between 1 and 20.
@@ -247,7 +412,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 <dev:type><maml:name>Int32</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none"><maml:name>Name</maml:name>
 <maml:Description><maml:para>What is the vegetable name?
@@ -256,7 +421,177 @@ UPC         Property   int UPC {get;set;}</dev:code>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Root</maml:name>
+<maml:Description><maml:para>Indicate that this is a root vegetable.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:parameters>
+<command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues><command:returnValue><dev:type><maml:name>[Vegetable]</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:alertSet><maml:alert><maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+</maml:para>
+</maml:alert>
+</maml:alertSet>
+<command:examples><command:example><maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code>PS C:\&gt; New-Vegetable -name leek -color green -passthru 
+
+UPC     Count Name          State    Color     
+---     ----- ----          -----    -----     
+4069        1 leek          Raw      green</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code>PS C:\&gt; New-Vegetable -name kale -color green -passthru | Set-Vegetable -cookingstate sauteed -passthru
+
+UPC     Count Name          State    Color
+---     ----- ----          -----    -----
+4302        1 kale          Sauteed  green</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+<dev:code>PS C:\&gt; New-Vegetable -name "Sweet Potato" -color orange -root</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Import-CSV c:\work\myveggies.csv | New-Vegetable</dev:code>
+<dev:remarks><maml:para>Import a CSV file with headings that match the parameters for New-Vegetable and create new vegetable objects.
+</maml:para>
+</dev:remarks>
+</command:example>
+</command:examples>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Get-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+<maml:navigationLink><maml:linkText>Set-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<command:details><command:name>New-Vegetable</command:name>
+<command:verb>New</command:verb>
+<command:noun>Vegetable</command:noun>
+<maml:description><maml:para>Create a new vegetable object.
+</maml:para>
+</maml:description>
+</command:details>
+<maml:description><maml:para>Use this command to create a new vegetable object. You must specify a vegetable name and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
+</maml:para>
+</maml:description>
+<command:syntax><command:syntaxItem><maml:name>New-Vegetable</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none"><maml:name>Name</maml:name>
+<maml:Description><maml:para>What is the vegetable name?
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none"><maml:name>Color</maml:name>
+<maml:Description><maml:para>What is the vegetable color?
+</maml:para>
+</maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">green</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">red</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">white</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">yellow</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">orange</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">purple</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">brown</command:parameterValue>
+</command:parameterValueGroup>
+<command:parameterValue required="true" variableLength="false">VegColor</command:parameterValue>
+<dev:type><maml:name>VegColor</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Count</maml:name>
+<maml:Description><maml:para>How many vegetables do you want? Pick a number between 1 and 20.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Root</maml:name>
+<maml:Description><maml:para>Indicate that this is a root vegetable.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none"><maml:name>Color</maml:name>
+<maml:Description><maml:para>What is the vegetable color?
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">VegColor</command:parameterValue>
+<dev:type><maml:name>VegColor</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none"><maml:name>Count</maml:name>
+<maml:Description><maml:para>How many vegetables do you want? Pick a number between 1 and 20.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none"><maml:name>Name</maml:name>
+<maml:Description><maml:para>What is the vegetable name?
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
 <maml:Description><maml:para>
@@ -344,7 +679,7 @@ UPC     Count Name          State    Color
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>Use this command to set vegetable properties. You can either specify a vegetable  by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
+<maml:description><maml:para>Use this command to set vegetable properties. You can either specify a vegetable by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Set-Vegetable</maml:name>
@@ -355,7 +690,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Vegetable[]</command:parameterValue>
 <dev:type><maml:name>Vegetable[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf"><maml:name>Confirm</maml:name>
 <maml:Description><maml:para>
@@ -381,7 +716,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
 <dev:type><maml:name>Status</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>Set the number of each vegetable. This should be a number between 1 and 20.
@@ -390,7 +725,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 <dev:type><maml:name>Int32</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
 <maml:Description><maml:para>
@@ -417,7 +752,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf"><maml:name>Confirm</maml:name>
 <maml:Description><maml:para>
@@ -443,7 +778,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
 <dev:type><maml:name>Status</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>Set the number of each vegetable. This should be a number between 1 and 20.
@@ -452,7 +787,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 <dev:type><maml:name>Int32</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
 <maml:Description><maml:para>
@@ -488,7 +823,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
 <dev:type><maml:name>Status</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
 <maml:Description><maml:para>Set the number of each vegetable. This should be a number between 1 and 20.
@@ -497,7 +832,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 <dev:type><maml:name>Int32</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>InputObject</maml:name>
 <maml:Description><maml:para>A piped in vegetable object.
@@ -506,7 +841,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">Vegetable[]</command:parameterValue>
 <dev:type><maml:name>Vegetable[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>Name</maml:name>
 <maml:Description><maml:para>The name of a vegetable.
@@ -515,7 +850,7 @@ UPC     Count Name          State    Color
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
 <maml:Description><maml:para>
@@ -575,6 +910,514 @@ UPC     Count Name          State    Color
 <maml:uri></maml:uri>
 </maml:navigationLink>
 <maml:navigationLink><maml:linkText>New-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<command:details><command:name>Set-Vegetable</command:name>
+<command:verb>Set</command:verb>
+<command:noun>Vegetable</command:noun>
+<maml:description><maml:para>Set a vegetable property
+</maml:para>
+</maml:description>
+</command:details>
+<maml:description><maml:para>Use this command to set vegetable properties. You can either specify a vegetable by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
+</maml:para>
+</maml:description>
+<command:syntax><command:syntaxItem><maml:name>Set-Vegetable</maml:name>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>InputObject</maml:name>
+<maml:Description><maml:para>A piped in vegetable object.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Vegetable[]</command:parameterValue>
+<dev:type><maml:name>Vegetable[]</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf"><maml:name>Confirm</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>CookingState</maml:name>
+<maml:Description><maml:para>Set the vegetable's cooking state.
+</maml:para>
+</maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Raw</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Boiled</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Steamed</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Sauteed</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Fried</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Baked</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Roasted</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Grilled</command:parameterValue>
+</command:parameterValueGroup>
+<command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
+<dev:type><maml:name>Status</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
+<maml:Description><maml:para>Set the number of each vegetable. This should be a number between 1 and 20.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi"><maml:name>WhatIf</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem><maml:name>Set-Vegetable</maml:name>
+<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>Name</maml:name>
+<maml:Description><maml:para>The name of a vegetable.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf"><maml:name>Confirm</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>CookingState</maml:name>
+<maml:Description><maml:para>Set the vegetable's cooking state.
+</maml:para>
+</maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Raw</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Boiled</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Steamed</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Sauteed</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Fried</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Baked</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Roasted</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">Grilled</command:parameterValue>
+</command:parameterValueGroup>
+<command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
+<dev:type><maml:name>Status</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
+<maml:Description><maml:para>Set the number of each vegetable. This should be a number between 1 and 20.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi"><maml:name>WhatIf</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters><command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf"><maml:name>Confirm</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>CookingState</maml:name>
+<maml:Description><maml:para>Set the vegetable's cooking state.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
+<dev:type><maml:name>Status</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Count</maml:name>
+<maml:Description><maml:para>Set the number of each vegetable. This should be a number between 1 and 20.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>InputObject</maml:name>
+<maml:Description><maml:para>A piped in vegetable object.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Vegetable[]</command:parameterValue>
+<dev:type><maml:name>Vegetable[]</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>Name</maml:name>
+<maml:Description><maml:para>The name of a vegetable.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Passthru</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi"><maml:name>WhatIf</maml:name>
+<maml:Description><maml:para>
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:parameters>
+<command:inputTypes><command:inputType><dev:type><maml:name>[Vegetable[]]</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues><command:returnValue><dev:type><maml:name>[Vegetable]</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:alertSet><maml:alert><maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+</maml:para>
+</maml:alert>
+</maml:alertSet>
+<command:examples><command:example><maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Set-Vegetable eggplant -cookingstate Roasted -count 5 -passthru
+
+UPC     Count Name          State    Color     
+---     ----- ----          -----    -----     
+4493        5 eggplant      Roasted  purple</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code>PS C:\&gt; Get-Vegetable pepper | Set-Vegetable -cookingstate steamed</dev:code>
+<dev:remarks><maml:para>
+</maml:para>
+</dev:remarks>
+</command:example>
+</command:examples>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Get-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+<maml:navigationLink><maml:linkText>New-Vegetable</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<command:details><command:name>Start-TypedDemo</command:name>
+<command:verb>Start</command:verb>
+<command:noun>TypedDemo</command:noun>
+<maml:description><maml:para>Simulate a PowerShell session
+</maml:para>
+</maml:description>
+</command:details>
+<maml:description><maml:para>This command simulates an interactive PowerShell session. It will process a text file of PowerShell commands. The function will insert your prompt and "type" out each command when you press any key. At the end of the typed command or whenever a pipe character is inserted, the script will pause. Press Enter or any key to continue. If it is the end of the command pressing Enter will execute the command. 
+</maml:para>
+<maml:para>Use the -NoExecute parameter to run through the demo without executing any commands.
+</maml:para>
+<maml:para>Commented lines will be skipped.
+</maml:para>
+<maml:para>Press 'q' or ESC at any pause to quit the demo.
+</maml:para>
+<maml:para>This function will NOT run properly in the PowerShell ISE.
+</maml:para>
+<maml:para>VARIABLE NAMES Do not use any variables in your script file that are also used in this script. These are the variables you most likely need to avoid:
+</maml:para>
+<maml:para> $file  $i  $running  $key  $command  $count
+</maml:para>
+<maml:para>MULITLINE COMMANDS To use a multiline command, in your demo file, put a :: before the first line and :: after the last line:
+</maml:para>
+<maml:para>... Get-Date :: get-wmiobject win32_logicaldisk -filter "Drivetype=3" |  Select Caption,VolumeName,Size,Freespace |  format-table -autosize :: Get-Process ...
+</maml:para>
+<maml:para>The function will simulate a nested prompt. Press any key after the last &gt;&gt; to execute. Avoid using the line continuation character in your demo file.
+</maml:para>
+<maml:para>TIMING By default the function will insert a random pause interval between characters. This is a random value in milliseconds between the -RandomMinimum and -RandomMaximum parameters which have default values of 50 and 140 respectively. If you want a static or consisent interval, then use the -Pause parameter. The recommended value is 80.
+</maml:para>
+<maml:para>TYPOS The -IncludeTypo parameter will introduce a typo at random intervals, then backspace over it and insert the correct text. You should not use this parameter with the -Transcript parameter. The transcript will have control characters for every backspace. It is not recommended to use -IncludeTypo when running any sort of transcript.
+</maml:para>
+<maml:para>SCOPE All the commands in your demo script are executed in the context of the Start-TypedDemo function. This means you have to be very aware of scope. While you can access items in the global scope like PSDrives, anything you create in the demo script will not persist.
+</maml:para>
+<maml:para>This also means that none of the commands in your demo script will show up in PowerShell history.
+</maml:para>
+<maml:para>COMMENTS Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the begininng of each line. You can't use PowerShell's block comment characters.
+</maml:para>
+</maml:description>
+<command:syntax><command:syntaxItem><maml:name>Start-TypedDemo</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none"><maml:name>File</maml:name>
+<maml:Description><maml:para>The file name of PowerShell commands to execute
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Pause</maml:name>
+<maml:Description><maml:para>The typing speed interval between characters in milliseconds. The recommended value is 100.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>80</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Transcript</maml:name>
+<maml:Description><maml:para>The file name and path for a transcript session file. Existing files will be overwritten. It is not recommended to use this parameter with -IncludeTypo.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>NoExecute</maml:name>
+<maml:Description><maml:para>Do not execute any of the commands.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>NewSession</maml:name>
+<maml:Description><maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+<command:syntaxItem><maml:name>Start-TypedDemo</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none"><maml:name>File</maml:name>
+<maml:Description><maml:para>The file name of PowerShell commands to execute
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RandomMinimum</maml:name>
+<maml:Description><maml:para>The minimum time interval between characters in milliseconds. The default is 50.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>50</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RandomMaximum</maml:name>
+<maml:Description><maml:para>The maximum time interval between characters in milliseconds. The default is 140.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>140</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>IncludeTypo</maml:name>
+<maml:Description><maml:para>When specified, the function will simulate typing mistakes. It is not recommended to use this parameter with -Transcript.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Transcript</maml:name>
+<maml:Description><maml:para>The file name and path for a transcript session file. Existing files will be overwritten. It is not recommended to use this parameter with -IncludeTypo.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>NoExecute</maml:name>
+<maml:Description><maml:para>Do not execute any of the commands.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>NewSession</maml:name>
+<maml:Description><maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.
+</maml:para>
+</maml:Description>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none"><maml:name>File</maml:name>
+<maml:Description><maml:para>The file name of PowerShell commands to execute
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Pause</maml:name>
+<maml:Description><maml:para>The typing speed interval between characters in milliseconds. The recommended value is 100.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>80</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RandomMinimum</maml:name>
+<maml:Description><maml:para>The minimum time interval between characters in milliseconds. The default is 50.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>50</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>RandomMaximum</maml:name>
+<maml:Description><maml:para>The maximum time interval between characters in milliseconds. The default is 140.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+<dev:type><maml:name>Int32</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>140</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>IncludeTypo</maml:name>
+<maml:Description><maml:para>When specified, the function will simulate typing mistakes. It is not recommended to use this parameter with -Transcript.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Transcript</maml:name>
+<maml:Description><maml:para>The file name and path for a transcript session file. Existing files will be overwritten. It is not recommended to use this parameter with -IncludeTypo.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>NoExecute</maml:name>
+<maml:Description><maml:para>Do not execute any of the commands.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>NewSession</maml:name>
+<maml:Description><maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+<dev:type><maml:name>SwitchParameter</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>False</dev:defaultValue>
+</command:parameter>
+</command:parameters>
+<command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues><command:returnValue><dev:type><maml:name>None. This only writes to the host console, not the pipeline.</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:alertSet><maml:alert><maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+</maml:para>
+</maml:alert>
+</maml:alertSet>
+<command:examples><command:example><maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+<dev:code>Start-TypedDemo c:\work\demo.txt</dev:code>
+<dev:remarks><maml:para>Run the commands in c:\work\demo.txt using the random defaults
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+<dev:code>Start-TypedDemo c:\work\demo.txt -pause 100 -NoExecute</dev:code>
+<dev:remarks><maml:para>Run the commands in c:\work\demo.txt using a static interval of 100 milliseconds. The function will only type the commands. They will not be executed.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+<dev:code>Start-TypedDemo c:\work\demo.txt -transcript c:\work\demotrans.txt</dev:code>
+<dev:remarks><maml:para>Run the commands in c:\work\demo.txt using the random defaults and create a transcript file.
+</maml:para>
+</dev:remarks>
+</command:example>
+</command:examples>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Write-Host</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+<maml:navigationLink><maml:linkText>Invoke-Command</maml:linkText>
 <maml:uri></maml:uri>
 </maml:navigationLink>
 </command:relatedLinks>

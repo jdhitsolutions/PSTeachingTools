@@ -263,7 +263,7 @@ Process {
 
     #get a new code
     $codes = (Get-Vegetable).UPC
-    do { $upc = Get-Random -Minimum 4000 -Maximum 4500} until ($codes -notcontains $upc) 
+    do { $upc = Get-Random -Minimum 4000 -Maximum 5000} until ($codes -notcontains $upc) 
 
     $veggie = [vegetable]::new($name,$Root,$color,$UPC)
 

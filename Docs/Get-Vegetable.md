@@ -14,9 +14,7 @@ Get-Vegetable [[-Name] <String>] [-RootOnly] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Use this command to retrieve vegetable objects from the local computer. The
-default is to retrieve all objects but you can select them by name or filter
-for only root vegetables like carrots.
+Use this command to retrieve vegetable objects from the local computer. The default is to retrieve all objects but you can select them by name or filter for only root vegetables like carrots.
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
@@ -79,9 +77,7 @@ Count Name                      Group
     3 Sauteed                   {Vegetable, Vegetable, Vegetable}
 ```
 
-Group vegetables by their CookedState property. Note that the default output
-is not necessarily the actual property name. You can only see that by using
-Get-Member.
+Group vegetables by their CookedState property. Note that the default output is not necessarily the actual property name. You can only see that by using Get-Member.
 ### -------------------------- EXAMPLE 5 --------------------------
 ```
 PS C:\> Get-Vegetable | Get-Member

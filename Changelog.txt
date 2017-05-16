@@ -1,5 +1,11 @@
 #Changelog for PSTeachingTools
 
+v0.0.5
+updated manifest changes
+updated UPC range to 4000-5000
+Added Start-TypedDemo function and alias
+updated help
+
 v0.0.4
 modified New-Vegetable parameters to accept value by property name
 updated help documents
