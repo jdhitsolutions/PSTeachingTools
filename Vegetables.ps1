@@ -124,9 +124,13 @@ Vegetable () { }
 </Configuration>
 "@
 
-$format.Save("$env:temp\vegetable.format.ps1xml")
+#use Join-Path to avoid problems with open source platforms
+$outfile = Join-Path -path $PSScriptRoot -childpath vegetable.format.ps1xml
+if (-Not (Test-Path -path $outFile)) {
+    $format.Save($outFile)
+}
 
-Update-FormatData -AppendPath $env:temp\vegetable.format.ps1xml
+Update-FormatData -AppendPath $outfile
 
 #endregion
 

@@ -1,7 +1,7 @@
 #Requires -version 5.0
 
 Function Start-TypedDemo {
-new[cmdletBinding(DefaultParameterSetName="Random")]
+[cmdletBinding(DefaultParameterSetName="Random")]
 
 Param(
 [Parameter(Position=0,Mandatory=$True,HelpMessage="Enter the name of a text file with your demo commands")]

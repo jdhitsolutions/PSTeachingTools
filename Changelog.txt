@@ -1,5 +1,9 @@
 #Changelog for PSTeachingTools
 
+v0.0.6
+modifed ps1xml code to use Join-Path
+updated manifest
+
 v0.0.5
 updated manifest changes
 updated UPC range to 4000-5000
