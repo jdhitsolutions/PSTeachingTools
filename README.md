@@ -11,15 +11,13 @@ file objects.
 ![setting objects](https://pbs.twimg.com/media/Co4cagxWIAAmR_r.jpg)
 
 The zip file, PSTeachingTools.zip, will contain the most current version of 
-this project as a PowerShell module.
+this project as a PowerShell module. You can also install this module from the PowerShell Gallery:
+
+```
+install-module psteachingtools
+```
 
 Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
 
-
-****************************************************************
-DO NOT USE IN A PRODUCTION ENVIRONMENT UNTIL YOU HAVE TESTED 
-THOROUGHLY IN A LAB ENVIRONMENT. USE AT YOUR OWN RISK. IF YOU DO 
-NOT UNDERSTAND WHAT THIS SCRIPT DOES OR HOW IT WORKS, DO NOT USE
-OUTSIDE OF A SECURE, TEST SETTING.      
-****************************************************************
+_last updated: May 25, 2017_

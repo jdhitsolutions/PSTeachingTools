@@ -277,6 +277,5 @@ foreach ($command in $commands) {
   
 } #function
 
-#uncomment if you want to use the alias
 
 
