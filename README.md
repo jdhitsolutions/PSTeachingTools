@@ -10,8 +10,7 @@ file objects.
 
 ![setting objects](https://pbs.twimg.com/media/Co4cagxWIAAmR_r.jpg)
 
-The zip file, PSTeachingTools.zip, will contain the most current version of 
-this project as a PowerShell module. You can also install this module from the PowerShell Gallery:
+You can install this module from the PowerShell Gallery:
 
 ```
 install-module psteachingtools

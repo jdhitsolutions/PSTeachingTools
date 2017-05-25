@@ -1,5 +1,8 @@
 #Changelog for PSTeachingTools
 
+v1.0.1
+updated README.
+
 v1.0.0
 initial release to PowerShell Gallery
 
