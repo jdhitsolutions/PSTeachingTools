@@ -14,12 +14,13 @@ Simulate a PowerShell session
 ### Random (Default)
 ```
 Start-TypedDemo [-File] <String> [-RandomMinimum <Int32>] [-RandomMaximum <Int32>] [-IncludeTypo]
- [-Transcript <String>] [-NoExecute] [-NewSession]
+ [-Transcript <String>] [-NoExecute] [-NewSession] [<CommonParameters>]
 ```
 
 ### Static
 ```
 Start-TypedDemo [-File] <String> [-Pause <Int32>] [-Transcript <String>] [-NoExecute] [-NewSession]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -217,6 +218,9 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

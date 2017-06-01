@@ -1,12 +1,14 @@
 ---
-external help file: psteachingtools-help.xml
+external help file: PSTeachingTools-help.xml
 online version: 
 schema: 2.0.0
 ---
 
 # Set-Vegetable
+
 ## SYNOPSIS
 Set a vegetable property
+
 ## SYNTAX
 
 ### name (Default)
@@ -23,6 +25,7 @@ Set-Vegetable [[-InputObject] <Vegetable[]>] [-Count <Int32>] [-CookingState <St
 
 ## DESCRIPTION
 Use this command to set vegetable properties. You can either specify a vegetable by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
+
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
@@ -49,7 +52,7 @@ Aliases: cf
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -65,7 +68,7 @@ Accepted values: Raw, Boiled, Steamed, Sauteed, Fried, Baked, Roasted, Grilled
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -80,7 +83,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -95,7 +98,7 @@ Aliases:
 
 Required: False
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
@@ -110,8 +113,8 @@ Aliases:
 
 Required: False
 Position: 0
-Default value: 
-Accept pipeline input: True (ByValue)
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: True
 ```
 
@@ -123,7 +126,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -136,13 +139,14 @@ Aliases: wi
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### [Vegetable[]]
@@ -154,6 +158,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
+
 ## RELATED LINKS
 
 [Get-Vegetable]()

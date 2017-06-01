@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # Get-Vegetable
+
 ## SYNOPSIS
 Get vegetable objects
+
 ## SYNTAX
 
 ```
@@ -15,6 +17,7 @@ Get-Vegetable [[-Name] <String>] [-RootOnly] [<CommonParameters>]
 
 ## DESCRIPTION
 Use this command to retrieve vegetable objects from the local computer. The default is to retrieve all objects but you can select them by name or filter for only root vegetables like carrots.
+
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
@@ -23,7 +26,7 @@ PS C:\> Get-Vegetable
 
 UPC     Count Name          State    Color     
 ---     ----- ----          -----    -----     
-4060       13 Corn          Roasted  yellow    
+4060       13 corn          Roasted  yellow    
 4353        9 tomato        Raw      red       
 4234       19 cucumber      Raw      green     
 4493        8 carrot        Raw      orange    
@@ -78,6 +81,7 @@ Count Name                      Group
 ```
 
 Group vegetables by their CookedState property. Note that the default output is not necessarily the actual property name. You can only see that by using Get-Member.
+
 ### -------------------------- EXAMPLE 5 --------------------------
 ```
 PS C:\> Get-Vegetable | Get-Member
@@ -113,8 +117,8 @@ Aliases:
 
 Required: False
 Position: 0
-Default value: 
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: True
 ```
 
@@ -128,13 +132,14 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
@@ -146,6 +151,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
+
 ## RELATED LINKS
 
 [Set-Vegetable]()

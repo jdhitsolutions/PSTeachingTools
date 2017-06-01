@@ -27,34 +27,34 @@ Enum VegColor {
 #a class to define a new type of object
 Class Vegetable {
 
-#properties
-[string]$Name
-[int]$Count = (Get-Random -minimum 1 -maximum 20)
-[int]$UPC
-[Status]$CookedState
-[boolean]$IsRoot
-[boolean]$IsPeeled
-[VegColor]$Color
+    #properties
+    [string]$Name
+    [int]$Count = (Get-Random -minimum 1 -maximum 20)
+    [int]$UPC
+    [Status]$CookedState
+    [boolean]$IsRoot
+    [boolean]$IsPeeled
+    [VegColor]$Color
 
-#methods
-[void]Peel() {
-    $this.IsPeeled = $True
-}
+    #methods
+    [void]Peel() {
+        $this.IsPeeled = $True
+    }
 
-[void]Prepare([status]$State) {
-    $this.CookedState = $State
-}
+    [void]Prepare([status]$State) {
+        $this.CookedState = $State
+    }
 
-#constructors
-Vegetable ([string]$Name,[boolean]$IsRoot,[vegcolor]$Color,[int]$UPC) {
-    $this.name = $Name
-    $this.IsRoot = $IsRoot
-    $this.Color = $Color
-    $this.upc = $UPC
-}
+    #constructors
+    Vegetable ([string]$Name, [boolean]$IsRoot, [vegcolor]$Color, [int]$UPC) {
+        $this.name = $Name
+        $this.IsRoot = $IsRoot
+        $this.Color = $Color
+        $this.upc = $UPC
+    }
 
-#an empty constructor
-Vegetable () { }
+    #an empty constructor
+    Vegetable () { }
 
 }
 
@@ -137,157 +137,157 @@ Update-FormatData -AppendPath $outfile
 #region some functions for working with vegetable objects
 
 Function Get-Vegetable {
-[cmdletbinding()]
+    [cmdletbinding()]
 
-Param(
-[string]$Name,
-[switch]$RootOnly
-)
+    Param(
+        [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [string]$Name,
+        [switch]$RootOnly
+    )
 
-Begin {
-    Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
-}
-
-Process {
-    if ($name -AND $RootOnly) {
-        Write-Verbose "[PROCESS] Getting vegetable $name where it is a root vegetable"
-        ($global:myvegetables).where({($_.IsRoot) -And ($_.name -like $name)})
-        # $global:myvegetables | where {($_.IsRoot) -And ($_.name -like $name)}
+    Begin {
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
     }
-    elseif ($Name) {
-        Write-Verbose "[PROCESS] Getting vegetable $name"
-        $result = ($global:myvegetables).where({$_.name -like $name})
-        if ($result) {
-            $result
+
+    Process {
+        if ($name -AND $RootOnly) {
+            Write-Verbose "[PROCESS] Getting vegetable $name where it is a root vegetable"
+            ($global:myvegetables).where( {($_.IsRoot) -And ($_.name -like $name)})
+            # $global:myvegetables | where {($_.IsRoot) -And ($_.name -like $name)}
+        }
+        elseif ($Name) {
+            Write-Verbose "[PROCESS] Getting vegetable $name"
+            $result = ($global:myvegetables).where( {$_.name -like $name})
+            if ($result) {
+                $result
+            }
+            else {
+                Throw "Can't find a vegetable with the name $Name"
+            }
+        }
+        elseif ($RootOnly) {
+            Write-Verbose "[PROCESS] Getting root vegetables only"
+            ($global:myvegetables).where( {$_.IsRoot})
         }
         else {
-            Throw "Can't find a vegetable with the name $Name"
+            Write-Verbose "[PROCESS] Getting all vegetables"
+            $global:myvegetables
         }
     }
-    elseif ($RootOnly) {
-        Write-Verbose "[PROCESS] Getting root vegetables only"
-        ($global:myvegetables).where({$_.IsRoot})
-    }
-    else {
-        Write-Verbose "[PROCESS] Getting all vegetables"
-        $global:myvegetables
-    }
-}
 
-End {
-
-    Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"  
-}
+    End {
+        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"  
+    }
 
 
 }
 
 Function Set-Vegetable {
-[cmdletbinding(SupportsShouldProcess,DefaultParameterSetName="name")]
-Param(
-[Parameter(Position = 0,ValueFromPipeline,ParameterSetName="input")]
-[Vegetable[]]$InputObject,
+    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = "name")]
+    Param(
+        [Parameter(Position = 0, ValueFromPipeline, ParameterSetName = "input")]
+        [Vegetable[]]$InputObject,
 
-[Parameter(Position = 0,ValueFromPipeline,ParameterSetName="name")]
-[string]$Name,
-[int]$Count,
-[status]$CookingState,
-[switch]$Passthru
-)
+        [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName,ParameterSetName = "name")]
+        [string]$Name,
+        [int]$Count,
+        [status]$CookingState,
+        [switch]$Passthru
+    )
 
-Begin {
-    Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
-} #begin
+    Begin {
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
+    } #begin
 
-Process {
-    if ($PSCmdlet.ParameterSetName -eq 'name') {
-        $inputObject = Get-Vegetable -Name $Name
-        Write-Verbose "[PROCESS] Modifying $name"
-    }
-    else {
-        Write-Verbose "[PROCESS] Modifying $($inputobject.name)"
-    }
-
-    foreach ($item in $InputObject) {
-        if ($PSCmdlet.ShouldProcess($item.name)) {
-            if ($CookingState) {
-                $item.Prepare($CookingState)
-            }
-            if ($count ) {
-                $item.count = $count
-            }
-            if ($Passthru) {
-                $item
-            }
+    Process {
+        if ($PSCmdlet.ParameterSetName -eq 'name') {
+            $inputObject = Get-Vegetable -Name $Name
+            Write-Verbose "[PROCESS] Modifying $name"
         }
-    } #foreach
-}
+        else {
+            Write-Verbose "[PROCESS] Modifying $($inputobject.name)"
+        }
 
-End {
-    Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
-} #end
+        foreach ($item in $InputObject) {
+            if ($PSCmdlet.ShouldProcess($item.name)) {
+                if ($CookingState) {
+                    $item.Prepare($CookingState)
+                }
+                if ($count ) {
+                    $item.count = $count
+                }
+                if ($Passthru) {
+                    $item
+                }
+            }
+        } #foreach
+    }
+
+    End {
+        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+    } #end
 
 }
 
 Function New-Vegetable {
-[cmdletbinding()]
-Param(
-[Parameter(
- Position = 0, 
- Mandatory, 
- HelpMessage = "What is the vegetable name?",
- ValueFromPipelineByPropertyName
- )]
-[ValidateNotNullorEmpty()]
-[string]$Name,
-[Parameter(
- Position = 1, 
- Mandatory, 
- HelpMessage = "What is the vegetable color?",
- ValueFromPipelineByPropertyName
- )]
-[ValidateNotNullorEmpty()]
-[vegcolor]$Color,
-[Parameter(ValueFromPipelineByPropertyName)]
-[ValidateRange(1,20)]
-[int]$Count = 1,
-[Parameter(ValueFromPipelineByPropertyName)]
-[switch]$Root,
-[switch]$Passthru
-)
+    [cmdletbinding()]
+    Param(
+        [Parameter(
+            Position = 0, 
+            Mandatory, 
+            HelpMessage = "What is the vegetable name?",
+            ValueFromPipelineByPropertyName
+        )]
+        [ValidateNotNullorEmpty()]
+        [string]$Name,
+        [Parameter(
+            Position = 1, 
+            Mandatory, 
+            HelpMessage = "What is the vegetable color?",
+            ValueFromPipelineByPropertyName
+        )]
+        [ValidateNotNullorEmpty()]
+        [vegcolor]$Color,
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [ValidateRange(1, 20)]
+        [int]$Count = 1,
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [switch]$Root,
+        [switch]$Passthru
+    )
 
-Begin {
-    Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
-}
-
-Process {
-    #display PSBoundparameters formatted nicely for Verbose output  
-    [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
-    Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | Out-String) `n" 
-
-    #get a new code
-    $codes = (Get-Vegetable).UPC
-    do { $upc = Get-Random -Minimum 4000 -Maximum 5000} until ($codes -notcontains $upc) 
-
-    $veggie = [vegetable]::new($name,$Root,$color,$UPC)
-
-    if ($veggie) {
-        $veggie.count = $Count
-
-        $global:myvegetables+=$veggie
-
-        if ($passthru) {
-          write-output $veggie
-         }
-     }
-    else {
-        Write-Warning "Oops. Something unexpected happened."
+    Begin {
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
     }
-} #process
 
-End {
-    Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
-} #end
+    Process {
+        #display PSBoundparameters formatted nicely for Verbose output  
+        [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
+        Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | Out-String) `n" 
+
+        #get a new code
+        $codes = (Get-Vegetable).UPC
+        do { $upc = Get-Random -Minimum 4000 -Maximum 5000} until ($codes -notcontains $upc) 
+
+        $veggie = [vegetable]::new($name, $Root, $color, $UPC)
+
+        if ($veggie) {
+            $veggie.count = $Count
+
+            $global:myvegetables += $veggie
+
+            if ($passthru) {
+                write-output $veggie
+            }
+        }
+        else {
+            Write-Warning "Oops. Something unexpected happened."
+        }
+    } #process
+
+    End {
+        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+    } #end
 } 
 
 #endregion
@@ -295,7 +295,7 @@ End {
 #region create some vegetable objects and store them in a global array
 
 $global:myvegetables = @()
-New-Vegetable -name "Corn" -color yellow -count (Get-Random -Minimum 1 -Maximum 20)
+New-Vegetable -name "corn" -color yellow -count (Get-Random -Minimum 1 -Maximum 20)
 New-Vegetable -name "tomato" -color red -count (Get-Random -Minimum 1 -Maximum 20)
 New-Vegetable -name "cucumber" -color green -count (Get-Random -Minimum 1 -Maximum 20) 
 New-Vegetable -name "carrot" -Root -color orange -count (Get-Random -Minimum 1 -Maximum 20)
@@ -316,7 +316,7 @@ New-Vegetable -name "eggplant" -color purple -count (Get-Random -Minimum 1 -Maxi
 Set-Vegetable -name pepper -cookingstate sauteed
 Set-Vegetable -name potato -cookingstate fried
 Set-Vegetable -name broccoli -cookingstate steamed
-Set-Vegetable -Name peas -cookingstate steamed
+Set-Vegetable -name peas -cookingstate steamed
 Set-Vegetable -name corn -cookingstate roasted
 Set-Vegetable -name turnip -cookingstate boiled
 Set-Vegetable -name cauliflower -cookingstate steamed

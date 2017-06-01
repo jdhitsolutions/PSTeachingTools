@@ -1,5 +1,11 @@
 #Changelog for PSTeachingTools
 
+v1.1.0
+minor changes to vegetable creation
+Modified Get-Vegetable to accept pipeline input
+Modified Set-Vegetable to accept pipeline input
+Updated help
+
 v1.0.1
 updated README.
 
