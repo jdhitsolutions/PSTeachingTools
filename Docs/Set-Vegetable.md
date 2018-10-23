@@ -7,44 +7,51 @@ schema: 2.0.0
 # Set-Vegetable
 
 ## SYNOPSIS
+
 Set a vegetable property
 
 ## SYNTAX
 
 ### name (Default)
-```
+
+```yaml
 Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### input
-```
+
+```yaml
 Set-Vegetable [[-InputObject] <Vegetable[]>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Use this command to set vegetable properties. You can either specify a vegetable by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
 
 ## EXAMPLES
 
-### -------------------------- EXAMPLE 1 --------------------------
-```
+### Example 1
+
+```powershell
 PS C:\> Set-Vegetable eggplant -cookingstate Roasted -count 5 -passthru
 
-UPC     Count Name          State    Color     
----     ----- ----          -----    -----     
+UPC     Count Name          State    Color
+---     ----- ----          -----    -----
 4493        5 eggplant      Roasted  purple
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
-```
+### Example 2
+
+```powershell
 PS C:\> Get-Vegetable pepper | Set-Vegetable -cookingstate steamed
 ```
 
 ## PARAMETERS
 
 ### -Confirm
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -58,6 +65,7 @@ Accept wildcard characters: False
 ```
 
 ### -CookingState
+
 Set the vegetable's cooking state.
 
 ```yaml
@@ -74,6 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Count
+
 Set the number of each vegetable. This should be a number between 1 and 20.
 
 ```yaml
@@ -89,6 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
+
 A piped in vegetable object.
 
 ```yaml
@@ -104,6 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 The name of a vegetable.
 
 ```yaml
@@ -119,6 +130,9 @@ Accept wildcard characters: True
 ```
 
 ### -Passthru
+
+Write the object to the pipeline.
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -132,6 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
@@ -145,6 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -153,14 +169,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### None
+
 ### [Vegetable]
 
 ## NOTES
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+
+Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
 [Get-Vegetable]()
+
 [New-Vegetable]()
 

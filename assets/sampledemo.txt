@@ -1,0 +1,11 @@
+#this is a sample demo file for Start-TypedDemo
+
+get-date
+get-process | where-object {$_.WS -ge 10MB} 
+::
+get-process | 
+where-object {$_.WS -ge 10MB} | 
+Select-Object Name,Handles,ID,WS
+::
+clear-host
+Get-psdrive

@@ -1,5 +1,4 @@
-﻿#requires -version 5.0
-
+﻿
 #region object definitions
 
 #enumerations for a few of the class properties
@@ -58,79 +57,6 @@ Class Vegetable {
 
 }
 
-#formatting directives for the custom object
-[xml]$format = @"
-<?xml version="1.0" encoding="utf-8" ?>
-<Configuration>
-    <ViewDefinitions>
-        <View>
-            <Name>default</Name>
-            <ViewSelectedBy>
-                <TypeName>vegetable</TypeName>
-            </ViewSelectedBy>
-            <TableControl>
-            <!-- ################ TABLE DEFINITIONS ################ -->
-                <TableHeaders>
-                    <TableColumnHeader>
-                        <Label>UPC</Label>
-                        <Width>5</Width>
-                        <Alignment>left</Alignment>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Label>Count</Label>
-                        <Width>7</Width>
-                        <Alignment>right</Alignment>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Label>Name</Label>
-                        <Width>13</Width>
-                        <Alignment>left</Alignment>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Label>State</Label>
-                        <Width>8</Width>
-                        <Alignment>left</Alignment>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Label>Color</Label>
-                        <Width>10</Width>
-                        <Alignment>left</Alignment>
-                    </TableColumnHeader>
-                 </TableHeaders>
-                <TableRowEntries>
-                    <TableRowEntry>
-                        <TableColumnItems>
-                            <TableColumnItem>
-                                <PropertyName>UPC</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
-                                <PropertyName>Count</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
-                                <PropertyName>Name</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
-                                <PropertyName>CookedState</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
-                                <PropertyName>Color</PropertyName>
-                            </TableColumnItem>
-                        </TableColumnItems>
-                    </TableRowEntry>
-                </TableRowEntries>
-            </TableControl>
-        </View>
-    </ViewDefinitions>
-</Configuration>
-"@
-
-#use Join-Path to avoid problems with open source platforms
-$outfile = Join-Path -path $PSScriptRoot -childpath vegetable.format.ps1xml
-if (-Not (Test-Path -path $outFile)) {
-    $format.Save($outFile)
-}
-
-Update-FormatData -AppendPath $outfile
 
 #endregion
 
@@ -138,6 +64,8 @@ Update-FormatData -AppendPath $outfile
 
 Function Get-Vegetable {
     [cmdletbinding()]
+    [OutputType("vegetable")]
+    [alias("gveg")]
 
     Param(
         [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
@@ -184,6 +112,9 @@ Function Get-Vegetable {
 
 Function Set-Vegetable {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = "name")]
+    [OutputType("None","Vegetable")]
+    [Alias("sveg")]
+
     Param(
         [Parameter(Position = 0, ValueFromPipeline, ParameterSetName = "input")]
         [Vegetable[]]$InputObject,
@@ -231,6 +162,9 @@ Function Set-Vegetable {
 
 Function New-Vegetable {
     [cmdletbinding()]
+    [OutputType("none","Vegetable")]
+    [alias("nveg")]
+
     Param(
         [Parameter(
             Position = 0, 
@@ -295,6 +229,7 @@ Function New-Vegetable {
 #region create some vegetable objects and store them in a global array
 
 $global:myvegetables = @()
+
 New-Vegetable -name "corn" -color yellow -count (Get-Random -Minimum 1 -Maximum 20)
 New-Vegetable -name "tomato" -color red -count (Get-Random -Minimum 1 -Maximum 20)
 New-Vegetable -name "cucumber" -color green -count (Get-Random -Minimum 1 -Maximum 20) 
@@ -313,6 +248,7 @@ New-Vegetable -name "pepper" -color yellow -count (Get-Random -Minimum 1 -Maximu
 New-Vegetable -name "eggplant" -color purple -count (Get-Random -Minimum 1 -Maximum 20)
 
 #modify the state of some of the vegetables to provide a variety of properties
+
 Set-Vegetable -name pepper -cookingstate sauteed
 Set-Vegetable -name potato -cookingstate fried
 Set-Vegetable -name broccoli -cookingstate steamed
