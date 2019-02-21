@@ -1,6 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
-online version: 
+Module Name: PSTeachingTools
+online version:
 schema: 2.0.0
 ---
 
@@ -15,15 +16,13 @@ Set a vegetable property
 ### name (Default)
 
 ```yaml
-Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### input
 
 ```yaml
-Set-Vegetable [[-InputObject] <Vegetable[]>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Set-Vegetable [[-InputObject] <Vegetable[]>] [-Count <Int32>] [-CookingState <Status>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,15 +36,15 @@ Use this command to set vegetable properties. You can either specify a vegetable
 ```powershell
 PS C:\> Set-Vegetable eggplant -cookingstate Roasted -count 5 -passthru
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4493        5 eggplant      Roasted  purple
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4081        5 eggplant             Roasted  purple
 ```
 
 ### Example 2
 
 ```powershell
-PS C:\> Get-Vegetable pepper | Set-Vegetable -cookingstate steamed
+PS C:\> Get-Vegetable -Name "anaheim pepper" | Set-Vegetable -CookingState grilled
 ```
 
 ## PARAMETERS
@@ -71,13 +70,13 @@ Set the vegetable's cooking state.
 ```yaml
 Type: Status
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Raw, Boiled, Steamed, Sauteed, Fried, Baked, Roasted, Grilled
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -88,12 +87,12 @@ Set the number of each vegetable. This should be a number between 1 and 20.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -104,7 +103,7 @@ A piped in vegetable object.
 ```yaml
 Type: Vegetable[]
 Parameter Sets: input
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -120,7 +119,7 @@ The name of a vegetable.
 ```yaml
 Type: String
 Parameter Sets: name
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -136,7 +135,7 @@ Write the object to the pipeline.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -171,7 +170,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### None
 
-### [Vegetable]
+### [Vegetable[]]
 
 ## NOTES
 

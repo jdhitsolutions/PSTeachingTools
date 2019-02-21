@@ -21,7 +21,7 @@
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Name</Label>
-            <Width>13</Width>
+            <Width>20</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
@@ -52,6 +52,55 @@
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Color</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <!--Created 02/21/2019 17:53:29 by BOVINE320\Jeff-->
+      <Name>State</Name>
+      <ViewSelectedBy>
+        <TypeName>Vegetable</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+       <PropertyName>CookedState</PropertyName>
+       <Label>CookingState</Label>
+       </GroupBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Name</Label>
+            <Width>20</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Color</Label>
+            <Width>8</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Count</Label>
+            <Width>8</Width>
+            <Alignment>right</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <!--
+            By default the entries use property names, but you can replace them with scriptblocks.
+            <Scriptblock>$_.foo /1mb -as [int]</Scriptblock>
+-->
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Color</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Count</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

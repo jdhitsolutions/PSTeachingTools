@@ -57,7 +57,6 @@ Class Vegetable {
 
 }
 
-
 #endregion
 
 #region some functions for working with vegetable objects
@@ -68,7 +67,11 @@ Function Get-Vegetable {
     [alias("gveg")]
 
     Param(
-        [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
         [string]$Name,
         [switch]$RootOnly
     )
@@ -104,30 +107,39 @@ Function Get-Vegetable {
     }
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"  
+        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
     }
-
-
 }
 
 Function Set-Vegetable {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = "name")]
-    [OutputType("None","Vegetable")]
+    [OutputType("None", "Vegetable")]
     [Alias("sveg")]
 
     Param(
-        [Parameter(Position = 0, ValueFromPipeline, ParameterSetName = "input")]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ParameterSetName = "input"
+        )]
         [Vegetable[]]$InputObject,
 
-        [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName,ParameterSetName = "name")]
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName,
+            ParameterSetName = "name"
+        )]
         [string]$Name,
+        [Parameter(ValueFromPipelineByPropertyName)]
         [int]$Count,
+        [Parameter(ValueFromPipelineByPropertyName)]
         [status]$CookingState,
         [switch]$Passthru
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
     } #begin
 
     Process {
@@ -144,7 +156,7 @@ Function Set-Vegetable {
                 if ($CookingState) {
                     $item.Prepare($CookingState)
                 }
-                if ($count ) {
+                if ($count) {
                     $item.count = $count
                 }
                 if ($Passthru) {
@@ -157,26 +169,25 @@ Function Set-Vegetable {
     End {
         Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
     } #end
-
 }
 
 Function New-Vegetable {
-    [cmdletbinding()]
-    [OutputType("none","Vegetable")]
+    [cmdletbinding(SupportsShouldProcess)]
+    [OutputType("none", "Vegetable")]
     [alias("nveg")]
 
     Param(
         [Parameter(
-            Position = 0, 
-            Mandatory, 
+            Position = 0,
+            Mandatory,
             HelpMessage = "What is the vegetable name?",
             ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullorEmpty()]
         [string]$Name,
         [Parameter(
-            Position = 1, 
-            Mandatory, 
+            Position = 1,
+            Mandatory,
             HelpMessage = "What is the vegetable color?",
             ValueFromPipelineByPropertyName
         )]
@@ -186,76 +197,56 @@ Function New-Vegetable {
         [ValidateRange(1, 20)]
         [int]$Count = 1,
         [Parameter(ValueFromPipelineByPropertyName)]
+        [alias("IsRoot")]
         [switch]$Root,
+        [Parameter(
+            Mandatory,
+            HelpMessage = "Enter a valid PLU code",
+            ValueFromPipelineByPropertyName)]
+        [int]$UPC,
         [switch]$Passthru
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"  
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
     }
 
     Process {
-        #display PSBoundparameters formatted nicely for Verbose output  
-        [string]$pb = ($PSBoundParameters | Format-Table -AutoSize | Out-String).TrimEnd()
-        Write-Verbose "[BEGIN  ] PSBoundparameters: `n$($pb.split("`n").Foreach({"$("`t"*4)$_"}) | Out-String) `n" 
 
-        #get a new code
-        $codes = (Get-Vegetable).UPC
-        do { $upc = Get-Random -Minimum 4000 -Maximum 5000} until ($codes -notcontains $upc) 
+        if ($PSCmdlet.ShouldProcess($Name)) {
 
-        $veggie = [vegetable]::new($name, $Root, $color, $UPC)
+            $veggie = [vegetable]::new($name, $Root, $color, $UPC)
 
-        if ($veggie) {
-            $veggie.count = $Count
+            if ($veggie) {
+                $veggie.count = $Count
 
-            $global:myvegetables += $veggie
+                $global:myvegetables += $veggie
 
-            if ($passthru) {
-                write-output $veggie
+                if ($passthru) {
+                    Write-Output $veggie
+                }
             }
-        }
-        else {
-            Write-Warning "Oops. Something unexpected happened."
-        }
+            else {
+                Write-Warning "Oops. Something unexpected happened."
+            }
+        } #should process
     } #process
 
     End {
         Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
     } #end
-} 
+}
 
 #endregion
 
 #region create some vegetable objects and store them in a global array
 
 $global:myvegetables = @()
-
-New-Vegetable -name "corn" -color yellow -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "tomato" -color red -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "cucumber" -color green -count (Get-Random -Minimum 1 -Maximum 20) 
-New-Vegetable -name "carrot" -Root -color orange -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "radish" -root -color red -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "peas" -color green -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "turnip" -Root -color purple -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "potato" -root -color brown -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "broccoli" -color green -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "zucchini" -color green -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "spinach" -color green -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "cauliflower" -color white -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "pepper" -color green -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "pepper" -color red -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "pepper" -color yellow -count (Get-Random -Minimum 1 -Maximum 20)
-New-Vegetable -name "eggplant" -color purple -count (Get-Random -Minimum 1 -Maximum 20)
-
-#modify the state of some of the vegetables to provide a variety of properties
-
-Set-Vegetable -name pepper -cookingstate sauteed
-Set-Vegetable -name potato -cookingstate fried
-Set-Vegetable -name broccoli -cookingstate steamed
-Set-Vegetable -name peas -cookingstate steamed
-Set-Vegetable -name corn -cookingstate roasted
-Set-Vegetable -name turnip -cookingstate boiled
-Set-Vegetable -name cauliflower -cookingstate steamed
-Set-Vegetable -name eggplant -cookingstate fried
+$raw = Get-Content -Path $PSScriptRoot\rawveggies.json | ConvertFrom-Json
+$raw | New-Vegetable
+foreach ($item in $global:myvegetables) {
+    $raw.where( {$_.upc -eq $item.upc}) | Set-Vegetable
+}
 
 #endregion
+

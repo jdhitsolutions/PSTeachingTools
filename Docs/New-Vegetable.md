@@ -1,6 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
-online version: 
+Module Name: PSTeachingTools
+online version:
 schema: 2.0.0
 ---
 
@@ -12,49 +13,56 @@ Create a new vegetable object.
 
 ## SYNTAX
 
-```ymal
-New-Vegetable [-Name] <String> [-Color] <VegColor> [-Count <Int32>] [-Root] [-Passthru] [<CommonParameters>]
+```yaml
+New-Vegetable [-Name] <String> [-Color] <VegColor> [-Count <Int32>] [-Root] -UPC <Int32> [-Passthru] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Use this command to create a new vegetable object. You must specify a vegetable name and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
+Use this command to create a new vegetable object. You must specify a vegetable name, upc and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
+
+You can search the module variable $vegetableplu to find a matching item. See examples.
+
 
 ## EXAMPLES
 
 ### Example 1
 
 ```powershell
-PS C:\> New-Vegetable -name leek -color green -passthru
+PS C:\> $vegetableplu | where name -match kiwi
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4069        1 leek          Raw      green
+PLUCode Name
+------- ----
+3279    Golden Kiwifruit
+3280    Jumbo Regular Kiwifruit
+4030    Regular Kiwifruit
+4301    Retailer Assigned Kiwifruit
+
+PS C:\> New-Vegetable -name kiwi -color green -upc 4030 -passthru
+
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4030        1 kiwi                 Raw      green
 ```
+
+Find a UPC code from $vegetableplu and create a new vegetable object.
 
 ### Example 2
 
 ```powershell
-PS C:\> New-Vegetable -name kale -color green -passthru | Set-Vegetable -cookingstate sauteed -passthru
+PS C:\> New-Vegetable -name kale -color green -upc 4627 -passthru | Set-Vegetable -cookingstate sauteed -passthru
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4302        1 kale          Sauteed  green
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4627        1 kale                 Sauteed  green
 ```
 
 ### Example 3
 
 ```powershell
-PS C:\> New-Vegetable -name "Sweet Potato" -color orange -root
+PS C:\> New-Vegetable -name "Sweet Potato" -upc 3334 -color orange -root
 ```
-
-### Example 4
-
-```powershell
-PS C:\> Import-CSV c:\work\myveggies.csv | New-Vegetable
-```
-
-Import a CSV file with headings that match the parameters for New-Vegetable and create new vegetable objects.
 
 ## PARAMETERS
 
@@ -130,12 +138,60 @@ Indicate that this is a root vegetable.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases: IsRoot
 
 Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UPC
+
+Enter a valid PLU code. You can search $vegetableupc for a valid code.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -1,5 +1,17 @@
 # Change Log for PSTeachingTools
 
+## v3.0.0
+
++ Updated `vegetables.ps1` with cleaner code to generate collection of vegetables from a json file with legitimate PLU codes.
++ Updated copyright year in `License.txt`
++ Modified `New-Vegetable` to support `-Whatif`
++ Code reformatting in `vegetables.ps1`
++ Modified class constructor to use UPC code.
++ Modified the layout of `vegetables.format.ps1xml`
++ Added a new table view called `state to `vegetables.format.ps1xml`
++ renamed Docs to docs
++ Updates to help documentation
+
 ## v2.0.0
 
 + File cleanup for the PowerShell Gallery

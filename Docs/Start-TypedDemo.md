@@ -1,6 +1,6 @@
 ---
 external help file: PSTeachingTools-help.xml
-online version: 
+online version:
 schema: 2.0.0
 ---
 
@@ -168,7 +168,7 @@ Accept wildcard characters: False
 
 ### -Transcript
 
-The file name and path for a transcript session file. Existing files will be overwritten. 
+The file name and path for a transcript session file. Existing files will be overwritten.
 
 ```yaml
 Type: String
@@ -205,7 +205,7 @@ Simulate a new PowerShell session with the copyright header and a prompt. This w
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -232,6 +232,6 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 
 ## RELATED LINKS
 
-[Write-Host]() 
+[Write-Host]()
 
 [Invoke-Command]()

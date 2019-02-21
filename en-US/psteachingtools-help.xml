@@ -79,7 +79,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>[Vegetable]</maml:name>
+          <maml:name>[Vegetable[]]</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -96,24 +96,26 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-Vegetable
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4060       13 corn          Roasted  yellow
-4353        9 tomato        Raw      red
-4234       19 cucumber      Raw      green
-4493        8 carrot        Raw      orange
-4107       19 radish        Raw      red
-4329       18 peas          Steamed  green
-4083       17 turnip        Boiled   purple
-4407       13 potato        Fried    brown
-4119       15 broccoli      Steamed  green
-4357        4 zucchini      Raw      green
-4242        7 spinach       Raw      green
-4256        8 cauliflower   Steamed  white
-4028       14 pepper        Sauteed  green
-4448       13 pepper        Sauteed  red
-4254        9 pepper        Sauteed  yellow
-4472        5 eggplant      Fried    purple</dev:code>
+
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4078       12 corn                 Roasted  yellow
+4064        4 tomato               Raw      red
+4062       11 cucumber             Raw      green
+4562       10 carrot               Raw      orange
+4089       13 radish               Raw      red
+4674       14 peas                 Steamed  green
+4811       12 turnip               Boiled   purple
+4725       18 russet potato        Fried    brown
+4060       15 broccoli             Steamed  green
+4067        7 zucchini             Raw      green
+4090        4 spinach              Raw      green
+4572        7 cauliflower          Steamed  white
+3125       17 habanero pepper      Raw      orange
+4677       16 Anaheim pepper       Raw      green
+4088       19 red bell pepper      Sauteed  red
+4081        6 eggplant             Fried    purple
+4604        2 endive               Raw      green</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -122,9 +124,9 @@ UPC     Count Name          State    Color
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-Vegetable eggplant
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4472        5 eggplant      Fried    purple</dev:code>
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4081        6 eggplant             Fried    purple</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -133,13 +135,12 @@ UPC     Count Name          State    Color
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-Vegetable -RootOnly
 
-
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4493        8 carrot        Raw      orange
-4107       19 radish        Raw      red
-4083       17 turnip        Boiled   purple
-4407       13 potato        Fried    brown</dev:code>
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4562       10 carrot               Raw      orange
+4089       13 radish               Raw      red
+4811       12 turnip               Boiled   purple
+4725       18 russet potato        Fried    brown</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -207,7 +208,8 @@ UPC         Property   int UPC {get;set;}</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to create a new vegetable object. You must specify a vegetable name and color. Note that this command does not write anything to the pipeline unless you use -Passthru.</maml:para>
+      <maml:para>Use this command to create a new vegetable object. You must specify a vegetable name, upc and color. Note that this command does not write anything to the pipeline unless you use -Passthru.</maml:para>
+      <maml:para>You can search the module variable $vegetableplu to find a matching item. See examples.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -268,10 +270,44 @@ UPC         Property   int UPC {get;set;}</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IsRoot">
           <maml:name>Root</maml:name>
           <maml:Description>
             <maml:para>Indicate that this is a root vegetable.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>UPC</maml:name>
+          <maml:Description>
+            <maml:para>Enter a valid PLU code. You can search $vegetableupc for a valid code.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -330,10 +366,46 @@ UPC         Property   int UPC {get;set;}</dev:code>
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IsRoot">
         <maml:name>Root</maml:name>
         <maml:Description>
           <maml:para>Indicate that this is a root vegetable.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>UPC</maml:name>
+        <maml:Description>
+          <maml:para>Enter a valid PLU code. You can search $vegetableupc for a valid code.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -379,38 +451,40 @@ UPC         Property   int UPC {get;set;}</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-Vegetable -name leek -color green -passthru
+        <dev:code>PS C:\&gt; $vegetableplu | where name -match kiwi
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4069        1 leek          Raw      green</dev:code>
+PLUCode Name
+------- ----
+3279    Golden Kiwifruit
+3280    Jumbo Regular Kiwifruit
+4030    Regular Kiwifruit
+4301    Retailer Assigned Kiwifruit
+
+PS C:\&gt; New-Vegetable -name kiwi -color green -upc 4030 -passthru
+
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4030        1 kiwi                 Raw      green</dev:code>
         <dev:remarks>
-          <maml:para></maml:para>
+          <maml:para>Find a UPC code from $vegetableplu and create a new vegetable object.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-Vegetable -name kale -color green -passthru | Set-Vegetable -cookingstate sauteed -passthru
+        <dev:code>PS C:\&gt; New-Vegetable -name kale -color green -upc 4627 -passthru | Set-Vegetable -cookingstate sauteed -passthru
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4302        1 kale          Sauteed  green</dev:code>
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4627        1 kale                 Sauteed  green</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-Vegetable -name "Sweet Potato" -color orange -root</dev:code>
+        <dev:code>PS C:\&gt; New-Vegetable -name "Sweet Potato" -upc 3334 -color orange -root</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
-        </dev:remarks>
-      </command:example>
-      <command:example>
-        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Import-CSV c:\work\myveggies.csv | New-Vegetable</dev:code>
-        <dev:remarks>
-          <maml:para>Import a CSV file with headings that match the parameters for New-Vegetable and create new vegetable objects.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -463,7 +537,7 @@ UPC     Count Name          State    Color
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>CookingState</maml:name>
           <maml:Description>
             <maml:para>Set the vegetable's cooking state.</maml:para>
@@ -485,7 +559,7 @@ UPC     Count Name          State    Color
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Count</maml:name>
           <maml:Description>
             <maml:para>Set the number of each vegetable. This should be a number between 1 and 20.</maml:para>
@@ -545,7 +619,7 @@ UPC     Count Name          State    Color
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>CookingState</maml:name>
           <maml:Description>
             <maml:para>Set the vegetable's cooking state.</maml:para>
@@ -567,7 +641,7 @@ UPC     Count Name          State    Color
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Count</maml:name>
           <maml:Description>
             <maml:para>Set the number of each vegetable. This should be a number between 1 and 20.</maml:para>
@@ -616,7 +690,7 @@ UPC     Count Name          State    Color
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>CookingState</maml:name>
         <maml:Description>
           <maml:para>Set the vegetable's cooking state.</maml:para>
@@ -628,7 +702,7 @@ UPC     Count Name          State    Color
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Count</maml:name>
         <maml:Description>
           <maml:para>Set the number of each vegetable. This should be a number between 1 and 20.</maml:para>
@@ -710,7 +784,7 @@ UPC     Count Name          State    Color
       </command:returnValue>
       <command:returnValue>
         <dev:type>
-          <maml:name>[Vegetable]</maml:name>
+          <maml:name>[Vegetable[]]</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -727,16 +801,16 @@ UPC     Count Name          State    Color
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Set-Vegetable eggplant -cookingstate Roasted -count 5 -passthru
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4493        5 eggplant      Roasted  purple</dev:code>
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4081        5 eggplant             Roasted  purple</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-Vegetable pepper | Set-Vegetable -cookingstate steamed</dev:code>
+        <dev:code>PS C:\&gt; Get-Vegetable -Name "anaheim pepper" | Set-Vegetable -CookingState grilled</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>

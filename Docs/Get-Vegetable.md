@@ -1,6 +1,7 @@
 ---
-external help file: psteachingtools-help.xml
-online version: 
+external help file: PSTeachingTools-help.xml
+Module Name: PSTeachingTools
+online version:
 schema: 2.0.0
 ---
 
@@ -27,24 +28,26 @@ Use this command to retrieve vegetable objects from the local computer. The defa
 ```powershell
 PS C:\> Get-Vegetable
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4060       13 corn          Roasted  yellow
-4353        9 tomato        Raw      red
-4234       19 cucumber      Raw      green
-4493        8 carrot        Raw      orange
-4107       19 radish        Raw      red
-4329       18 peas          Steamed  green
-4083       17 turnip        Boiled   purple
-4407       13 potato        Fried    brown
-4119       15 broccoli      Steamed  green
-4357        4 zucchini      Raw      green
-4242        7 spinach       Raw      green
-4256        8 cauliflower   Steamed  white
-4028       14 pepper        Sauteed  green
-4448       13 pepper        Sauteed  red
-4254        9 pepper        Sauteed  yellow
-4472        5 eggplant      Fried    purple
+
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4078       12 corn                 Roasted  yellow
+4064        4 tomato               Raw      red
+4062       11 cucumber             Raw      green
+4562       10 carrot               Raw      orange
+4089       13 radish               Raw      red
+4674       14 peas                 Steamed  green
+4811       12 turnip               Boiled   purple
+4725       18 russet potato        Fried    brown
+4060       15 broccoli             Steamed  green
+4067        7 zucchini             Raw      green
+4090        4 spinach              Raw      green
+4572        7 cauliflower          Steamed  white
+3125       17 habanero pepper      Raw      orange
+4677       16 Anaheim pepper       Raw      green
+4088       19 red bell pepper      Sauteed  red
+4081        6 eggplant             Fried    purple
+4604        2 endive               Raw      green
 ```
 
 ### Example 2
@@ -52,9 +55,9 @@ UPC     Count Name          State    Color
 ```powershell
 PS C:\> Get-Vegetable eggplant
 
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4472        5 eggplant      Fried    purple
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4081        6 eggplant             Fried    purple
 ```
 
 ### Example 3
@@ -62,13 +65,12 @@ UPC     Count Name          State    Color
 ```powershell
 PS C:\> Get-Vegetable -RootOnly
 
-
-UPC     Count Name          State    Color
----     ----- ----          -----    -----
-4493        8 carrot        Raw      orange
-4107       19 radish        Raw      red
-4083       17 turnip        Boiled   purple
-4407       13 potato        Fried    brown
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+4562       10 carrot               Raw      orange
+4089       13 radish               Raw      red
+4811       12 turnip               Boiled   purple
+4725       18 russet potato        Fried    brown
 ```
 
 ### Example 4
@@ -156,7 +158,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### [Vegetable]
+### [Vegetable[]]
 
 ## NOTES
 
