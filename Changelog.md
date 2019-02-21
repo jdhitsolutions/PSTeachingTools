@@ -8,8 +8,8 @@
 + Code reformatting in `vegetables.ps1`
 + Modified class constructor to use UPC code.
 + Modified the layout of `vegetables.format.ps1xml`
-+ Added a new table view called `statedir to `vegetables.format.ps1xml`
-+ renamed Docs to docs
++ Added a new table view called `statedir` to `vegetables.format.ps1xml`
++ renamed `Docs` to `docs`
 + Updates to help documentation
 
 ## v2.0.0
