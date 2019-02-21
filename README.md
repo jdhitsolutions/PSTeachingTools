@@ -14,7 +14,7 @@ install-module psteachingtools
 ```
 
 The module also includes a function for simulating an interactive PowerShell console session. You can type your commands in a file and have the function "play back" the commands
-just as if you were typing the commands. The function will pause after every | character. Pressing Enter will advance the demo. Read help for [Start-TypedDemo](./docs/Start-TypedDemo.md). A [sample file](./assets/sampledemo.txt) is included in this module.
+just as if you were typing the commands. The function will pause after every | character. Pressing Enter will advance the demo. Read help for [Start-TypedDemo](./Docs/Start-TypedDemo.md). A [sample file](./assets/sampledemo.txt) is included in this module.
 
 The module should work in both Windows PowerShell and PowerShell Core. Please post an issue with any feedback, suggestions or problems.
 
