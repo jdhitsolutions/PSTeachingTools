@@ -1,5 +1,8 @@
 # PSTeachingTools
 
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/PSTeachingTools.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSTeachingTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSTeachingTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSTeachingTools/)
+
+
 This PowerShell module includes tools and techniques for teaching PowerShell. Many of the commands will create a set of sample objects and commands that can be used to demonstrate a variety of PowerShell techniques and concepts without having to worry about anything technical like Active Directory, services or file objects.
 
 ![Using objects in the pipeline](./assets/get-vegetable.jpg)
