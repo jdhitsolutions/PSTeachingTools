@@ -1,5 +1,15 @@
 # Change Log for PSTeachingTools
 
+## v3.1.0
+
++ Updated `Start-TypedDemo` to reflect Windows PowerShell 5.1 or PowerShell 7 sessions.
++ Modified `Start-TypedDemo` to use fully qualified command name for `Write-Host`.
++ Updated module to export the enumerations and class definition.
++ Help updates
++ Added an `about` help topic file (Issue #2)
++ Updated `sampledemo.txt`
++ Updated `License`
+
 ## v3.0.0
 
 + Updated `vegetables.ps1` with cleaner code to generate collection of vegetables from a json file with legitimate PLU codes.

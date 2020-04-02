@@ -837,11 +837,10 @@ UPC     Count Name                 State    Color
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>This command simulates an interactive PowerShell session. It will process a text file of PowerShell commands. The function will insert your prompt and "type" out each command when you press any key. At the end of the typed command or whenever a pipe character is inserted, the script will pause. Press Enter or any key to continue. If it is the end of the command pressing Enter will execute the command.</maml:para>
-      <maml:para>Use the -NoExecute parameter to run through the demo without executing any commands.</maml:para>
-      <maml:para>Commented lines will be skipped.</maml:para>
+      <maml:para>This command simulates an interactive PowerShell session. It will process a text file of PowerShell commands. The function will insert your prompt and "type" out each command when you press any key. At the end of the typed command or whenever a pipe character is inserted, the script will pause. Press Enter or any key to continue. If it is the end of the command pressing Enter will execute the command. Use the -NoExecute parameter to run through the demo without executing any commands.</maml:para>
+      <maml:para>Commented lines in your demo file will be skipped.</maml:para>
       <maml:para>Press 'q' or ESC at any pause to quit the demo.</maml:para>
-      <maml:para>This function will NOT run properly in the PowerShell ISE.</maml:para>
+      <maml:para>This command  will NOT run properly in the PowerShell ISE. It is designed to be used in a PowerShell console session. It appears to work fine in a Windows Terminal PowerShell session.</maml:para>
       <maml:para>VARIABLE NAMES Do not use any variables in your script file that are also used in this script. These are the variables you most likely need to avoid:</maml:para>
       <maml:para> $file  $i  $running  $key  $command  $count</maml:para>
       <maml:para>MULTI-LINE COMMANDS To use a multi-line command, in your demo file, put a :: before the first line and :: after the last line:</maml:para>
@@ -880,18 +879,6 @@ UPC     Count Name                 State    Color
           <dev:defaultValue>80</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Transcript</maml:name>
-          <maml:Description>
-            <maml:para>The file name and path for a transcript session file. Existing files will be overwritten.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NoExecute</maml:name>
           <maml:Description>
             <maml:para>Do not execute any of the commands.</maml:para>
@@ -905,7 +892,7 @@ UPC     Count Name                 State    Color
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NewSession</maml:name>
           <maml:Description>
-            <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.</maml:para>
+            <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -978,7 +965,7 @@ UPC     Count Name                 State    Color
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NewSession</maml:name>
           <maml:Description>
-            <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.</maml:para>
+            <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -1064,7 +1051,7 @@ UPC     Count Name                 State    Color
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>NewSession</maml:name>
         <maml:Description>
-          <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.</maml:para>
+          <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>

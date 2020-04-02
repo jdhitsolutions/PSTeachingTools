@@ -1,5 +1,6 @@
 ---
 external help file: PSTeachingTools-help.xml
+Module Name: PSTeachingTools
 online version:
 schema: 2.0.0
 ---
@@ -15,28 +16,25 @@ Simulate a PowerShell console session
 ### Random (Default)
 
 ```yaml
-Start-TypedDemo [-File] <String> [-RandomMinimum <Int32>] [-RandomMaximum <Int32>]
- [-Transcript <String>] [-NoExecute] [-NewSession] [<CommonParameters>]
+Start-TypedDemo [-File] <String> [-RandomMinimum <Int32>] [-RandomMaximum <Int32>] [-Transcript <String>]
+ [-NoExecute] [-NewSession] [<CommonParameters>]
 ```
 
 ### Static
 
 ```yaml
-Start-TypedDemo [-File] <String> [-Pause <Int32>] [-Transcript <String>] [-NoExecute] [-NewSession]
- [<CommonParameters>]
+Start-TypedDemo [-File] <String> [-Pause <Int32>] [-NoExecute] [-NewSession] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-This command simulates an interactive PowerShell session. It will process a text file of PowerShell commands. The function will insert your prompt and "type" out each command when you press any key. At the end of the typed command or whenever a pipe character is inserted, the script will pause. Press Enter or any key to continue. If it is the end of the command pressing Enter will execute the command.
+This command simulates an interactive PowerShell session. It will process a text file of PowerShell commands. The function will insert your prompt and "type" out each command when you press any key. At the end of the typed command or whenever a pipe character is inserted, the script will pause. Press Enter or any key to continue. If it is the end of the command pressing Enter will execute the command. Use the -NoExecute parameter to run through the demo without executing any commands.
 
-Use the -NoExecute parameter to run through the demo without executing any commands.
-
-Commented lines will be skipped.
+Commented lines in your demo file will be skipped.
 
 Press 'q' or ESC at any pause to quit the demo.
 
-This function will NOT run properly in the PowerShell ISE.
+This command  will NOT run properly in the PowerShell ISE. It is designed to be used in a PowerShell console session. It appears to work fine in a Windows Terminal PowerShell session.
 
 VARIABLE NAMES
 Do not use any variables in your script file that are also used in this script. These are the variables you most likely need to avoid:
@@ -172,7 +170,7 @@ The file name and path for a transcript session file. Existing files will be ove
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Random
 Aliases:
 
 Required: False
@@ -200,7 +198,7 @@ Accept wildcard characters: False
 
 ### -NewSession
 
-Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive.
+Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.
 
 ```yaml
 Type: SwitchParameter
@@ -216,7 +214,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -1,11 +1,14 @@
 #this is a sample demo file for Start-TypedDemo
+#The command will pause at every | character
 
 get-date
-get-process | where-object {$_.WS -ge 10MB} 
+get-process | where-object {$_.WS -ge 10MB}
+
+#this is how you would define a multi-line command
 ::
-get-process | 
-where-object {$_.WS -ge 10MB} | 
+get-process |
+where-object {$_.WS -ge 10MB} |
 Select-Object Name,Handles,ID,WS
 ::
 clear-host
-Get-psdrive
+Get-PSdrive
