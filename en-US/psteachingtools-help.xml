@@ -844,11 +844,11 @@ UPC     Count Name                 State    Color
       <maml:para>VARIABLE NAMES Do not use any variables in your script file that are also used in this script. These are the variables you most likely need to avoid:</maml:para>
       <maml:para> $file  $i  $running  $key  $command  $count</maml:para>
       <maml:para>MULTI-LINE COMMANDS To use a multi-line command, in your demo file, put a :: before the first line and :: after the last line:</maml:para>
-      <maml:para>... Get-Date :: get-wmiobject win32_logicaldisk -filter "Drivetype=3" | Select Caption,VolumeName,Size,Freespace | format-table -autosize :: Get-Process ...</maml:para>
+      <maml:para>... Get-Date :: get-ciminstance win32_logicaldisk -filter "Drivetype=3" | Select Caption,VolumeName,Size,Freespace | format-table -autosize :: Get-Process ...</maml:para>
       <maml:para>The function will simulate a nested prompt. Press any key after the last &gt;&gt; to execute. Avoid using the line continuation character in your demo file.</maml:para>
       <maml:para>TIMING By default the function will insert a random pause interval between characters. This is a random value in milliseconds between the -RandomMinimum and -RandomMaximum parameters which have default values of 50 and 140 respectively. If you want a static or consistent interval, then use the -Pause parameter. The recommended value is 80.</maml:para>
       <maml:para>SCOPE All the commands in your demo script are executed in the context of the Start-TypedDemo function. This means you have to be very aware of scope. While you can access items in the global scope like PSDrives, anything you create in the demo script will not persist.</maml:para>
-      <maml:para>This also means that none of the commands in your demo script will show up in PowerShell history.</maml:para>
+      <maml:para>However, command history will be persisted to the history and command buffers as well as the PSReadline history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.</maml:para>
       <maml:para>COMMENTS Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the beginning of each line. You can't use PowerShell's block comment characters.</maml:para>
     </maml:description>
     <command:syntax>
@@ -942,7 +942,7 @@ UPC     Count Name                 State    Color
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Transcript</maml:name>
           <maml:Description>
-            <maml:para>The file name and path for a transcript session file. Existing files will be overwritten.</maml:para>
+            <maml:para>The file name and path for a transcript session file. Existing files will be overwritten. The transcript will have a minimum header.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1027,7 +1027,7 @@ UPC     Count Name                 State    Color
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Transcript</maml:name>
         <maml:Description>
-          <maml:para>The file name and path for a transcript session file. Existing files will be overwritten.</maml:para>
+          <maml:para>The file name and path for a transcript session file. Existing files will be overwritten. The transcript will have a minimum header.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1074,7 +1074,7 @@ UPC     Count Name                 State    Color
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>None. This only writes to the host console, not the pipeline.</maml:name>
+          <maml:name>None. This only writes to the host console, not the pipeline. Although you can create a transcript.</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -1109,15 +1109,6 @@ UPC     Count Name                 State    Color
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks>
-      <maml:navigationLink>
-        <maml:linkText>Write-Host</maml:linkText>
-        <maml:uri></maml:uri>
-      </maml:navigationLink>
-      <maml:navigationLink>
-        <maml:linkText>Invoke-Command</maml:linkText>
-        <maml:uri></maml:uri>
-      </maml:navigationLink>
-    </command:relatedLinks>
+    <command:relatedLinks />
   </command:command>
 </helpItems>
