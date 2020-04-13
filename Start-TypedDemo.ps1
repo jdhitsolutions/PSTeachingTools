@@ -1,3 +1,4 @@
+#requires -modules @{ModuleName='PSReadline';ModuleVersion='2.0.0'}
 
 Function Start-TypedDemo {
     [cmdletBinding(DefaultParameterSetName = "Random")]
@@ -91,17 +92,25 @@ Type 'help' to get help.
         Microsoft.PowerShell.Utility\Write-Host $header
     } #if new session
 
-    #Start a transcript if requested
-    $RunningTranscript = $False
-
     if ($Transcript) {
         Try {
-            Start-Transcript -Path $Transcript -ErrorAction Stop | Out-Null
             $RunningTranscript = $True
+            $startTranscript = @"
+
+*******************************
+PowerShell transcript start
+Start time: $(Get-Date)
+*******************************
+
+"@
+            $startTranscript | Out-File -filepath $Transcript -Encoding ascii -erroraction Stop
         }
         Catch {
             Write-Warning "Could not start a transcript. One may already be running."
         }
+    }
+    else {
+        $RunningTranscript = $False
     }
     #strip out all comments and blank lines
     Write-Verbose "Getting commands from $file"
@@ -152,6 +161,7 @@ Type 'help' to get help.
         #SINGLE LINE COMMAND
         if ($command -ne "::" -AND $NoMultiLine) {
             Write-Verbose "single line command"
+
             for ($i = 0; $i -lt $command.length; $i++) {
 
                 #write the character
@@ -159,7 +169,7 @@ Type 'help' to get help.
                 Microsoft.PowerShell.Utility\Write-Host $command[$i] -NoNewline
 
                 #insert a pause to simulate typing
-                Start-sleep -Milliseconds $(&$Interval)
+                Start-Sleep -Milliseconds $(&$Interval)
 
                 &$PipeCheck
 
@@ -174,8 +184,34 @@ Type 'help' to get help.
             If ((PauseIt) -eq "quit") {Return}
             Microsoft.PowerShell.Utility\Write-Host "`r"
             #execute the command unless -NoExecute was specified
+            if ($RunningTranscript) {
+              "$(prompt)$Command" | Out-File -filepath $Transcript -Encoding ascii -erroraction Stop -Append
+            }
             if (-NOT $NoExecute) {
-                Invoke-Expression $command | Out-Default
+                [datetime]$start = [datetime]::now
+                $h=@{
+                    PSTypeName = "Microsoft.PowerShell.Commands.HistoryInfo"
+                    CommandLine = $Command
+                    StartExecutionTime = $start
+                }
+
+                Invoke-Expression $command -OutVariable r | Out-Default
+                if ($RunningTranscript) {
+                    $r | Out-File -filepath $Transcript -Encoding ascii -Append -ErrorAction stop
+                }
+
+
+                #Add to PSReadline History
+                [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($command)
+
+                #Add to command history
+                [datetime]$end = [datetime]::now
+                $h.Add("EndExecutionTime", $end)
+                $h.Add("ExecutionStatus","Completed")
+                if ($psversiontable.psversion.major -eq 7) {
+                    $h.add("Duration",(New-Timespan -start $start -end $End))
+                }
+                [pscustomobject]$h | Add-History
             }
             else {
                 Microsoft.PowerShell.Utility\Write-Host $command -ForegroundColor Cyan
@@ -224,11 +260,35 @@ Type 'help' to get help.
             If ((PauseIt) -eq "quit") {Return}
             #execute the command unless -NoExecute was specified
             Microsoft.PowerShell.Utility\Write-Host "`r"
+            $cmd =  $(($multi -replace ';(\s=?)$','').trim())
+            if ($RunningTranscript) {
+                    "$(prompt)$cmd" | Out-File -path $Transcript -Encoding ascii -erroraction Stop -Append
+            }
             if (-NOT $NoExecute) {
-                Invoke-Expression $multi | Out-Default
+                [datetime]$start = [datetime]::now
+                $h = @{
+                    CommandLine        = $cmd
+                    StartExecutionTime = $start
+                }
+                Invoke-Expression $cmd -OutVariable r | Out-Default
+
+                if ($RunningTranscript) {
+                    $r | Out-File -filepath $Transcript -Encoding ascii -append -erroraction stop
+                }
+                #Add clean command to PSReadline History
+                [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($cmd)
+
+                #Add to command history
+                [datetime]$end = [datetime]::now
+                $h.Add("EndExecutionTime", $end)
+                $h.Add("ExecutionStatus", "Completed")
+                if ($psversiontable.psversion.major -eq 7) {
+                    $h.add("Duration",(New-Timespan -Start $start -end $end))
+                }
+                [pscustomobject]$h | Add-History
             }
             else {
-                Microsoft.PowerShell.Utility\Write-Host $multi -ForegroundColor Cyan
+                Microsoft.PowerShell.Utility\Write-Host $cmd -ForegroundColor Cyan
             }
         }  #elseif end of multiline
         #NESTED PROMPTS
@@ -270,7 +330,16 @@ Type 'help' to get help.
     #stop a transcript if it is running
     if ($RunningTranscript) {
         #stop this transcript if it is running
-        Stop-Transcript | Out-Null
+       # Stop-Transcript | Out-Null
+        $stopTranscript = @"
+
+*******************************
+PowerShell transcript end
+End time: $(Get-Date)
+*******************************
+
+"@
+            $stopTranscript | Out-File -path $Transcript -Encoding ascii -erroraction Stop -Append
     }
 
 } #function

@@ -1,5 +1,13 @@
 # Change Log for PSTeachingTools
 
+## v3.2.0
+
++ Modified `Start-TypedDemo` to record commands in the `PSReadline` History file, command history and history buffer.
++ Modified `Start-TypedDemo` to create a custom transcript file.
++ Fixed bug in module file that was preventing aliases from being exported.
++ Updated `sampledemo.txt`.
++ Updated help for `Start-TypedDemo`.
+
 ## v3.1.0
 
 + Updated `Start-TypedDemo` to reflect Windows PowerShell 5.1 or PowerShell 7 sessions.

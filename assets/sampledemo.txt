@@ -1,6 +1,8 @@
 #this is a sample demo file for Start-TypedDemo
 #The command will pause at every | character
 
+pushd
+cd C:\
 get-date
 get-process | where-object {$_.WS -ge 10MB}
 
@@ -12,3 +14,4 @@ Select-Object Name,Handles,ID,WS
 ::
 clear-host
 Get-PSdrive
+popd

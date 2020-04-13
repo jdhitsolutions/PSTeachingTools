@@ -52,7 +52,7 @@ To use a multi-line command, in your demo file, put a :: before the first line a
 ...
 Get-Date
 ::
-get-wmiobject win32_logicaldisk -filter "Drivetype=3" |
+get-ciminstance win32_logicaldisk -filter "Drivetype=3" |
 Select Caption,VolumeName,Size,Freespace |
 format-table -autosize
 ::
@@ -67,7 +67,7 @@ By default the function will insert a random pause interval between characters. 
 SCOPE
 All the commands in your demo script are executed in the context of the Start-TypedDemo function. This means you have to be very aware of scope. While you can access items in the global scope like PSDrives, anything you create in the demo script will not persist.
 
-This also means that none of the commands in your demo script will show up in PowerShell history.
+However, command history will be persisted to the history and command buffers as well as the PSReadline history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.
 
 COMMENTS
 Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the beginning of each line. You can't use PowerShell's block comment characters.
@@ -166,7 +166,7 @@ Accept wildcard characters: False
 
 ### -Transcript
 
-The file name and path for a transcript session file. Existing files will be overwritten.
+The file name and path for a transcript session file. Existing files will be overwritten. The transcript will have a minimum header.
 
 ```yaml
 Type: String
@@ -222,14 +222,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### None. This only writes to the host console, not the pipeline.
+### None. This only writes to the host console, not the pipeline. Although you can create a transcript.
 
 ## NOTES
 
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
-
-[Write-Host]()
-
-[Invoke-Command]()
