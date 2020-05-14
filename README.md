@@ -10,7 +10,8 @@ You can install this module from the PowerShell Gallery:
 install-module psteachingtools
 ```
 
-If installing on PowerShell 7 you may need to include the `-scope currentuser` parameter.
+If installing on PowerShell 7 you may need to include the `-scope currentuser` parameter. Do not attempt to download and install from this repository unless you are an experienced PowerShell user.
+
 The module should work in both Windows PowerShell and PowerShell 7. Please post an issue with any feedback, suggestions or problems.
 
 ## Teaching PowerShell
