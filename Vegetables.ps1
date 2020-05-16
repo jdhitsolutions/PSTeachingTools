@@ -22,30 +22,38 @@ Function Get-Vegetable {
     }
 
     Process {
-        if ($name -AND $RootOnly) {
-            Write-Verbose "[PROCESS] Getting vegetable $name where it is a root vegetable"
-            ($global:myvegetables).where( {($_.IsRoot) -And ($_.name -like $name)})
-            # $global:myvegetables | where {($_.IsRoot) -And ($_.name -like $name)}
-        }
-        elseif ($Name) {
-            Write-Verbose "[PROCESS] Getting vegetable $name"
-            $result = ($global:myvegetables).where( {$_.name -like $name})
-            if ($result) {
-                $result
+
+        #verify the myvegetables array exists
+        if ( $global:myvegetables.count -gt 0) {
+            Write-Verbose "[PROCESS] Processing $($global:myvegetables.count) items."
+            if ($name -AND $RootOnly) {
+                Write-Verbose "[PROCESS] Getting vegetable $name where it is a root vegetable"
+                ($global:myvegetables).where( {($_.IsRoot) -And ($_.name -like $name)})
+                # $global:myvegetables | where {($_.IsRoot) -And ($_.name -like $name)}
+            }
+            elseif ($Name) {
+                Write-Verbose "[PROCESS] Getting vegetable $name"
+                $result = ($global:myvegetables).where( {$_.name -like $name})
+                if ($result) {
+                    $result
+                }
+                else {
+                    Throw "Can't find a vegetable with the name $Name"
+                }
+            }
+            elseif ($RootOnly) {
+                Write-Verbose "[PROCESS] Getting root vegetables only"
+                ($global:myvegetables).where( {$_.IsRoot})
             }
             else {
-                Throw "Can't find a vegetable with the name $Name"
+                Write-Verbose "[PROCESS] Getting all vegetables"
+                $global:myvegetables
             }
-        }
-        elseif ($RootOnly) {
-            Write-Verbose "[PROCESS] Getting root vegetables only"
-            ($global:myvegetables).where({$_.IsRoot})
-        }
+        } #if myvegetables
         else {
-            Write-Verbose "[PROCESS] Getting all vegetables"
-            $global:myvegetables
+            Write-Warning "Failed to find vegetable source."
         }
-    }
+    } #Process
 
     End {
         Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
@@ -95,9 +103,11 @@ Function Set-Vegetable {
         foreach ($item in $InputObject) {
             if ($PSCmdlet.ShouldProcess($item.name)) {
                 if ($CookingState) {
+                    Write-Verbose "[PROCESS] Updating cooking state to $cookingstate"
                     $item.Prepare($CookingState)
                 }
                 if ($count) {
+                    Write-Verbose "[PROCESS] Updating count to $count"
                     $item.count = $count
                 }
                 if ($Passthru) {
@@ -155,12 +165,12 @@ Function New-Vegetable {
     Process {
 
         if ($PSCmdlet.ShouldProcess($Name)) {
-
+            Write-Verbose "[PROCESS] Creating $name"
             $veggie = [vegetable]::new($name, $Root, $color, $UPC)
 
             if ($veggie) {
                 $veggie.count = $Count
-
+                Write-Verbose "Adding to global array"
                 $global:myvegetables += $veggie
 
                 if ($passthru) {
@@ -180,14 +190,4 @@ Function New-Vegetable {
 
 #endregion
 
-#region create some vegetable objects and store them in a global array
-
-$global:myvegetables = @()
-$raw = Get-Content -Path $PSScriptRoot\rawveggies.json | ConvertFrom-Json
-$raw | New-Vegetable
-foreach ($item in $global:myvegetables) {
-    $raw.where( {$_.upc -eq $item.upc}) | Set-Vegetable
-}
-
-#endregion
 

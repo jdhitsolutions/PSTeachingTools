@@ -1,5 +1,11 @@
 # Change Log for PSTeachingTools
 
+## v3.2.1
+
++ Modified module with additional verbose output to aid in troubleshooting command failures.
++ Moved vegatable creation from `vegetables.ps1` to module file.
++ Explictly defining `$vegetableplu` as a global variable and removing `Export-ModuleMember`.
+
 ## v3.2.0
 
 + Modified `Start-TypedDemo` to record commands in the `PSReadline` History file, command history and history buffer.

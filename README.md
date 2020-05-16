@@ -4,10 +4,10 @@
 
 ## Installation
 
-You can install this module from the PowerShell Gallery:
+You should install this module from the PowerShell Gallery:
 
 ```powershell
-install-module psteachingtools
+install-module psteachingtools [-scope currentuser]
 ```
 
 If installing on PowerShell 7 you may need to include the `-scope currentuser` parameter. Do not attempt to download and install from this repository unless you are an experienced PowerShell user.
@@ -30,4 +30,4 @@ The module also includes a function for simulating an interactive PowerShell con
 
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
-_last updated: 2020-04-02 18:50:14Z UTC_
+_last updated: 2020-05-16 13:21:23Z UTC_
