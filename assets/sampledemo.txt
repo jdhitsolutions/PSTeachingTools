@@ -1,6 +1,8 @@
 #this is a sample demo file for Start-TypedDemo
 #The command will pause at every | character
 
+$psversiontable
+
 pushd
 cd C:\
 get-date

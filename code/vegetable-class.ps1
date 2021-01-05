@@ -1,5 +1,20 @@
+[cmdletbinding()]
+Param()
+#region class definitions
 
-#region object definitions
+#only add the class definition if it doesn't already exist in the current session
+Write-Verbose "Defining PSTeachingTools.PSVegetable class"
+Try {
+     [void]([PSTeachingTools.PSVegetable].name)
+     Write-Verbose "The class already exists in this session."
+}
+Catch {
+    Write-Verbose "Adding class definition"
+    Add-Type -path $PsscriptRoot\psteachingtools.cs
+}
+
+#this is the previous PowerShell class definition of the vegetable class
+<#
 
 #enumerations for a few of the class properties
 Enum Status {
@@ -54,7 +69,7 @@ Class Vegetable {
 
     #an empty constructor
     Vegetable () { }
-
 }
 
 #endregion
+#>

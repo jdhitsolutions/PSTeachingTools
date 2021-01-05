@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version:
+online version: https://bit.ly/38axyWq
 schema: 2.0.0
 ---
 

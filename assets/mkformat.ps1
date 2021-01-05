@@ -12,7 +12,7 @@ This script file is not an published part of the module
         <View>
             <Name>default</Name>
             <ViewSelectedBy>
-                <TypeName>vegetable</TypeName>
+                <TypeName>PSTeachingTools.PSVegetable</TypeName>
             </ViewSelectedBy>
             <TableControl>
             <!-- ################ TABLE DEFINITIONS ################ -->

@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version:
+online version: https://bit.ly/3oe0N01
 schema: 2.0.0
 ---
 
@@ -80,12 +80,12 @@ PS C:\> Get-Vegetable | Group CookedState
 
 Count Name                      Group
 ----- ----                      -----
-    1 Roasted                   {Vegetable}
-    6 Raw                       {Vegetable, Vegetable, Vegetable, Vegetable...}
-    3 Steamed                   {Vegetable, Vegetable, Vegetable}
-    1 Boiled                    {Vegetable}
-    2 Fried                     {Vegetable, Vegetable}
-    3 Sauteed                   {Vegetable, Vegetable, Vegetable}
+    9 Raw                       {PSTeachingTools.PSVegetable, PSTeachingToo...
+    1 Boiled                    {PSTeachingTools.PSVegetable}
+    3 Steamed                   {PSTeachingTools.PSVegetable, PSTeachingToo...
+    1 Sauteed                   {PSTeachingTools.PSVegetable}
+    2 Fried                     {PSTeachingTools.PSVegetable, PSTeachingToo...
+    1 Roasted                   {PSTeachingTools.PSVegetable}
 ```
 
 Group vegetables by their CookedState property. Note that the default output is not necessarily the actual property name. You can only see that by using Get-Member.
@@ -95,23 +95,23 @@ Group vegetables by their CookedState property. Note that the default output is 
 ```powershell
 PS C:\> Get-Vegetable | Get-Member
 
-TypeName: Vegetable
+   TypeName: PSTeachingTools.PSVegetable
 
 Name        MemberType Definition
 ----        ---------- ----------
 Equals      Method     bool Equals(System.Object obj)
-GetHashCode Method     int GetHashCode(
+GetHashCode Method     int GetHashCode()
 GetType     Method     type GetType()
 Peel        Method     void Peel()
-Prepare     Method     void Prepare(Status State)
+Prepare     Method     void Prepare(PSTeachingTools.VegStatus State)
 ToString    Method     string ToString()
-Color       Property   VegColor Color {get;set;}
-CookedState Property   Status CookedState {get;set;}
+Color       Property   PSTeachingTools.VegColor Color {get;}
+CookedState Property   PSTeachingTools.VegStatus CookedState {get;set;}
 Count       Property   int Count {get;set;}
 IsPeeled    Property   bool IsPeeled {get;set;}
-IsRoot      Property   bool IsRoot {get;set;}
-Name        Property   string Name {get;set;}
-UPC         Property   int UPC {get;set;}
+IsRoot      Property   bool IsRoot {get;}
+Name        Property   string Name {get;}
+UPC         Property   int UPC {get;}
 ```
 
 ## PARAMETERS
@@ -150,15 +150,15 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
+### String
 
 ## OUTPUTS
 
-### [Vegetable[]]
+### PSTeachingTools.PSVegetable
 
 ## NOTES
 
@@ -166,6 +166,8 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 
 ## RELATED LINKS
 
-[Set-Vegetable]()
+[Set-Vegetable](Set-Vegetable.md)
 
-[New-Vegetable]()
+[New-Vegetable](New-Vegetable.md)
+
+[Remove-Vegetable](Remove-Vegetable.md)

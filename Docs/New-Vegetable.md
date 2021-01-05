@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version:
+online version: https://bit.ly/389v9vb
 schema: 2.0.0
 ---
 
@@ -20,10 +20,9 @@ New-Vegetable [-Name] <String> [-Color] <VegColor> [-Count <Int32>] [-Root] -UPC
 
 ## DESCRIPTION
 
-Use this command to create a new vegetable object. You must specify a vegetable name, upc and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
+Use this command to create a new vegetable object. You must specify a vegetable name, UPC value, and color. Note that this command does not write anything to the pipeline unless you use -Passthru.
 
 You can search the module variable $vegetableplu to find a matching item. See examples.
-
 
 ## EXAMPLES
 
@@ -46,7 +45,7 @@ UPC     Count Name                 State    Color
 4030        1 kiwi                 Raw      green
 ```
 
-Find a UPC code from $vegetableplu and create a new vegetable object.
+Find a UPC value from $vegetableplu and create a new vegetable object.
 
 ### Example 2
 
@@ -68,7 +67,7 @@ PS C:\> New-Vegetable -name "Sweet Potato" -upc 3334 -color orange -root
 
 ### -Color
 
-What is the vegetable color?
+What is the color of the vegetable? This is a value from the [PSTeachingTools.VegColor] enumeration.
 
 ```yaml
 Type: VegColor
@@ -101,7 +100,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-What is the vegetable name?
+What is the name of the vegetable?
 
 ```yaml
 Type: String
@@ -197,7 +196,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -207,7 +206,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### None
 
-### [Vegetable]
+### PSTeachingTools.PSVegetable
 
 ## NOTES
 
@@ -215,6 +214,8 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 
 ## RELATED LINKS
 
-[Get-Vegetable]()
+[Get-Vegetable](Get-Vegetable.md)
 
-[Set-Vegetable]()
+[Set-Vegetable](Set-Vegetable.md)
+
+[Remove-Vegetable](Remove-Vegetable.md)

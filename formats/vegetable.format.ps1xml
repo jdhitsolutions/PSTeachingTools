@@ -4,7 +4,7 @@
     <View>
       <Name>default</Name>
       <ViewSelectedBy>
-        <TypeName>vegetable</TypeName>
+        <TypeName>PSTeachingTools.PSVegetable</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <!-- ################ TABLE DEFINITIONS ################ -->
@@ -62,7 +62,7 @@
       <!--Created 02/21/2019 17:53:29 by BOVINE320\Jeff-->
       <Name>State</Name>
       <ViewSelectedBy>
-        <TypeName>Vegetable</TypeName>
+        <TypeName>PSTeachingTools.PSVegetable</TypeName>
       </ViewSelectedBy>
       <GroupBy>
        <PropertyName>CookedState</PropertyName>

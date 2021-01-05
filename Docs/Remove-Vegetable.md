@@ -1,57 +1,59 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version: https://bit.ly/2XmCCkB
+online version:
 schema: 2.0.0
 ---
 
-# Set-Vegetable
+# Remove-Vegetable
 
 ## SYNOPSIS
 
-Set a vegetable property
+Delete a Vegetable object.
 
 ## SYNTAX
-
-### name (Default)
-
-```yaml
-Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <VegStatus>] [-Passthru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
-```
 
 ### input
 
 ```yaml
-Set-Vegetable [[-InputObject] <PSVegetable[]>] [-Count <Int32>] [-CookingState <VegStatus>] [-Passthru]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-Vegetable [[-InputObject] <PSVegetable[]>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### name
+
+```yaml
+Remove-Vegetable [[-Name] <String>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Use this command to set vegetable properties. You can either specify a vegetable by name or pipe objects from Get-Vegetable. By default this command does not write anything to the pipeline unless you use -Passthru.
+This command will remove a vegetable object from your PowerShell session. It will not write anything to the pipeline unless you use -Passthru.
 
 ## EXAMPLES
 
 ### Example 1
 
 ```powershell
-PS C:\> Set-Vegetable eggplant -cookingstate Roasted -count 5 -passthru
-
-UPC     Count Name                 State    Color
----     ----- ----                 -----    -----
-4081        5 eggplant             Roasted  purple
+PS C:\> Remove-Vegetable -name corn
 ```
 
 ### Example 2
 
 ```powershell
-PS C:\> Get-Vegetable -Name "anaheim pepper" | Set-Vegetable -CookingState grilled
+PS C:\> Get-Vegetable *pepper | Remove-Vegetable -passthru
+
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+3125       17 habanero pepper      Raw      orange
+4677       16 Anaheim pepper       Raw      green
+4088       19 red bell pepper      Sauteed  red
 ```
 
 ## PARAMETERS
 
 ### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
 Type: SwitchParameter
@@ -65,42 +67,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CookingState
-
-Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.
-
-```yaml
-Type: VegStatus
-Parameter Sets: (All)
-Aliases: state
-Accepted values: Raw, Boiled, Steamed, Sauteed, Fried, Baked, Roasted, Grilled
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Count
-
-Set the number of each vegetable. This should be a number between 1 and 20.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
 ### -InputObject
 
-A piped in vegetable object.
+A piped in Vegetable object.
 
 ```yaml
 Type: PSVegetable[]
@@ -116,7 +85,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-The name of a vegetable.
+The name of a vegetable object.
 
 ```yaml
 Type: String
@@ -132,7 +101,7 @@ Accept wildcard characters: True
 
 ### -Passthru
 
-Write the object to the pipeline.
+Write the removed object to the pipeline
 
 ```yaml
 Type: SwitchParameter
@@ -147,6 +116,9 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
@@ -166,13 +138,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### String
+### PSTeachingTools.PSVegetable[]
 
-### PSTeachingTools.PSVegetable
+### System.String
 
 ## OUTPUTS
 
-### None
+### none
 
 ### PSTeachingTools.PSVegetable
 
@@ -184,6 +156,6 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 
 [Get-Vegetable](Get-Vegetable.md)
 
-[New-Vegetable](New-Vegetable.md)
+[Set-Vegetable](Set-Vegetable.md)
 
-[Remove-Vegetable](Remove-Vegetable.md)
+[New-Vegetable](New-Vegetable.md)

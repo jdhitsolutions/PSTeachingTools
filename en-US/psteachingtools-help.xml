@@ -69,7 +69,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>String</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -79,7 +79,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>[Vegetable[]]</maml:name>
+          <maml:name>PSTeachingTools.PSVegetable</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -151,12 +151,12 @@ UPC     Count Name                 State    Color
 
 Count Name                      Group
 ----- ----                      -----
-    1 Roasted                   {Vegetable}
-    6 Raw                       {Vegetable, Vegetable, Vegetable, Vegetable...}
-    3 Steamed                   {Vegetable, Vegetable, Vegetable}
-    1 Boiled                    {Vegetable}
-    2 Fried                     {Vegetable, Vegetable}
-    3 Sauteed                   {Vegetable, Vegetable, Vegetable}</dev:code>
+    9 Raw                       {PSTeachingTools.PSVegetable, PSTeachingToo...
+    1 Boiled                    {PSTeachingTools.PSVegetable}
+    3 Steamed                   {PSTeachingTools.PSVegetable, PSTeachingToo...
+    1 Sauteed                   {PSTeachingTools.PSVegetable}
+    2 Fried                     {PSTeachingTools.PSVegetable, PSTeachingToo...
+    1 Roasted                   {PSTeachingTools.PSVegetable}</dev:code>
         <dev:remarks>
           <maml:para>Group vegetables by their CookedState property. Note that the default output is not necessarily the actual property name. You can only see that by using Get-Member.</maml:para>
         </dev:remarks>
@@ -165,23 +165,23 @@ Count Name                      Group
         <maml:title>-------------------------- Example 5 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-Vegetable | Get-Member
 
-TypeName: Vegetable
+   TypeName: PSTeachingTools.PSVegetable
 
 Name        MemberType Definition
 ----        ---------- ----------
 Equals      Method     bool Equals(System.Object obj)
-GetHashCode Method     int GetHashCode(
+GetHashCode Method     int GetHashCode()
 GetType     Method     type GetType()
 Peel        Method     void Peel()
-Prepare     Method     void Prepare(Status State)
+Prepare     Method     void Prepare(PSTeachingTools.VegStatus State)
 ToString    Method     string ToString()
-Color       Property   VegColor Color {get;set;}
-CookedState Property   Status CookedState {get;set;}
+Color       Property   PSTeachingTools.VegColor Color {get;}
+CookedState Property   PSTeachingTools.VegStatus CookedState {get;set;}
 Count       Property   int Count {get;set;}
 IsPeeled    Property   bool IsPeeled {get;set;}
-IsRoot      Property   bool IsRoot {get;set;}
-Name        Property   string Name {get;set;}
-UPC         Property   int UPC {get;set;}</dev:code>
+IsRoot      Property   bool IsRoot {get;}
+Name        Property   string Name {get;}
+UPC         Property   int UPC {get;}</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -189,11 +189,19 @@ UPC         Property   int UPC {get;set;}</dev:code>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3oe0N01</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Set-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-Vegetable</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -208,7 +216,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to create a new vegetable object. You must specify a vegetable name, upc and color. Note that this command does not write anything to the pipeline unless you use -Passthru.</maml:para>
+      <maml:para>Use this command to create a new vegetable object. You must specify a vegetable name, UPC value, and color. Note that this command does not write anything to the pipeline unless you use -Passthru.</maml:para>
       <maml:para>You can search the module variable $vegetableplu to find a matching item. See examples.</maml:para>
     </maml:description>
     <command:syntax>
@@ -217,7 +225,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none">
           <maml:name>Name</maml:name>
           <maml:Description>
-            <maml:para>What is the vegetable name?</maml:para>
+            <maml:para>What is the name of the vegetable?</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -229,7 +237,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none">
           <maml:name>Color</maml:name>
           <maml:Description>
-            <maml:para>What is the vegetable color?</maml:para>
+            <maml:para>What is the color of the vegetable? This is a value from the [PSTeachingTools.VegColor] enumeration.</maml:para>
           </maml:Description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">green</command:parameterValue>
@@ -321,7 +329,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none">
         <maml:name>Color</maml:name>
         <maml:Description>
-          <maml:para>What is the vegetable color?</maml:para>
+          <maml:para>What is the color of the vegetable? This is a value from the [PSTeachingTools.VegColor] enumeration.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">VegColor</command:parameterValue>
         <dev:type>
@@ -345,7 +353,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none">
         <maml:name>Name</maml:name>
         <maml:Description>
-          <maml:para>What is the vegetable name?</maml:para>
+          <maml:para>What is the name of the vegetable?</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -436,7 +444,7 @@ UPC         Property   int UPC {get;set;}</dev:code>
       </command:returnValue>
       <command:returnValue>
         <dev:type>
-          <maml:name>[Vegetable]</maml:name>
+          <maml:name>PSTeachingTools.PSVegetable</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -466,7 +474,7 @@ UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
 4030        1 kiwi                 Raw      green</dev:code>
         <dev:remarks>
-          <maml:para>Find a UPC code from $vegetableplu and create a new vegetable object.</maml:para>
+          <maml:para>Find a UPC value from $vegetableplu and create a new vegetable object.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -490,11 +498,269 @@ UPC     Count Name                 State    Color
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/389v9vb</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Set-Vegetable</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-Vegetable</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-Vegetable</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>Vegetable</command:noun>
+      <maml:description>
+        <maml:para>Delete a Vegetable object.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This command will remove a vegetable object from your PowerShell session. It will not write anything to the pipeline unless you use -Passthru.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-Vegetable</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>InputObject</maml:name>
+          <maml:Description>
+            <maml:para>A piped in Vegetable object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
+          <dev:type>
+            <maml:name>PSVegetable[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Passthru</maml:name>
+          <maml:Description>
+            <maml:para>Write the removed object to the pipeline</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-Vegetable</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>The name of a vegetable object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Passthru</maml:name>
+          <maml:Description>
+            <maml:para>Write the removed object to the pipeline</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>InputObject</maml:name>
+        <maml:Description>
+          <maml:para>A piped in Vegetable object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
+        <dev:type>
+          <maml:name>PSVegetable[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>The name of a vegetable object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Passthru</maml:name>
+        <maml:Description>
+          <maml:para>Write the removed object to the pipeline</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>PSTeachingTools.PSVegetable[]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>none</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PSTeachingTools.PSVegetable</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-Vegetable -name corn</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-Vegetable *pepper | Remove-Vegetable -passthru
+
+UPC     Count Name                 State    Color
+---     ----- ----                 -----    -----
+3125       17 habanero pepper      Raw      orange
+4677       16 Anaheim pepper       Raw      green
+4088       19 red bell pepper      Sauteed  red</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-Vegetable</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Set-Vegetable</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>New-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -519,9 +785,9 @@ UPC     Count Name                 State    Color
           <maml:Description>
             <maml:para>A piped in vegetable object.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Vegetable[]</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
           <dev:type>
-            <maml:name>Vegetable[]</maml:name>
+            <maml:name>PSVegetable[]</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -537,10 +803,10 @@ UPC     Count Name                 State    Color
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="state">
           <maml:name>CookingState</maml:name>
           <maml:Description>
-            <maml:para>Set the vegetable's cooking state.</maml:para>
+            <maml:para>Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.</maml:para>
           </maml:Description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Raw</command:parameterValue>
@@ -552,9 +818,9 @@ UPC     Count Name                 State    Color
             <command:parameterValue required="false" command:variableLength="false">Roasted</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Grilled</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">VegStatus</command:parameterValue>
           <dev:type>
-            <maml:name>Status</maml:name>
+            <maml:name>VegStatus</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -619,10 +885,10 @@ UPC     Count Name                 State    Color
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="state">
           <maml:name>CookingState</maml:name>
           <maml:Description>
-            <maml:para>Set the vegetable's cooking state.</maml:para>
+            <maml:para>Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.</maml:para>
           </maml:Description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Raw</command:parameterValue>
@@ -634,9 +900,9 @@ UPC     Count Name                 State    Color
             <command:parameterValue required="false" command:variableLength="false">Roasted</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Grilled</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">VegStatus</command:parameterValue>
           <dev:type>
-            <maml:name>Status</maml:name>
+            <maml:name>VegStatus</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -690,14 +956,14 @@ UPC     Count Name                 State    Color
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="state">
         <maml:name>CookingState</maml:name>
         <maml:Description>
-          <maml:para>Set the vegetable's cooking state.</maml:para>
+          <maml:para>Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Status</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">VegStatus</command:parameterValue>
         <dev:type>
-          <maml:name>Status</maml:name>
+          <maml:name>VegStatus</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -719,9 +985,9 @@ UPC     Count Name                 State    Color
         <maml:Description>
           <maml:para>A piped in vegetable object.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Vegetable[]</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
         <dev:type>
-          <maml:name>Vegetable[]</maml:name>
+          <maml:name>PSVegetable[]</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -766,7 +1032,15 @@ UPC     Count Name                 State    Color
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>[Vegetable[]]</maml:name>
+          <maml:name>String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>PSTeachingTools.PSVegetable</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -784,7 +1058,7 @@ UPC     Count Name                 State    Color
       </command:returnValue>
       <command:returnValue>
         <dev:type>
-          <maml:name>[Vegetable[]]</maml:name>
+          <maml:name>PSTeachingTools.PSVegetable</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -818,11 +1092,19 @@ UPC     Count Name                 State    Color
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/2XmCCkB</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-Vegetable</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -1109,6 +1391,11 @@ UPC     Count Name                 State    Color
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/38axyWq</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
   </command:command>
 </helpItems>

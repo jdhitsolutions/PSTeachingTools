@@ -6,7 +6,7 @@ Function Start-TypedDemo {
 
     Param(
         [Parameter(Position = 0, Mandatory = $True, HelpMessage = "Enter the name of a text file with your demo commands")]
-        [ValidateScript( {Test-Path $_})]
+        [ValidateScript({Test-Path $_})]
         [string]$File,
         [ValidateScript( {$_ -gt 0})]
         [Parameter(ParameterSetName = "Static")]
@@ -72,9 +72,9 @@ Try the new cross-platform PowerShell https://aka.ms/pscore6
 
 "@
             } #5.1
-           "^7.0" {
+           "^7\." {
 $header = @"
-PowerShell 7.0.0
+PowerShell $($psversiontable.psversion.tostring())
 Copyright (c) Microsoft Corporation. All rights reserved.
 
 https://aka.ms/powershell
