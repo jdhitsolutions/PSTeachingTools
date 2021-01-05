@@ -66,4 +66,8 @@ The module also includes a function for simulating an interactive PowerShell con
 Read command help for [Start-TypedDemo](docs/Start-TypedDemo.md). A [sample file](assets/sampledemo.txt) is included in this module.
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
-last updated: *2021-01-05 16:26:52Z*
+## Sponsorship
+
+If you find this module helpful or valuable, especially if used in a commercial setting, a small token of sponsorship would be deeply appreciated.
+
+last updated: *2021-01-05 16:49:51Z*
