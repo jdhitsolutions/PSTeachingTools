@@ -63,11 +63,13 @@ See the [about_psteachingtools](docs/about_PSTeachingTools.md) help file for mor
 
 The module also includes a function for simulating an interactive PowerShell console session. You can type your commands in a file and have the function "play back" the commands just as if you were typing the commands. The function will pause after every `|` character. Pressing `Enter` will advance the demo. The commands from the demo file will also be added to the session's command history.
 
-Read command help for [Start-TypedDemo](docs/Start-TypedDemo.md). A [sample file](assets/sampledemo.txt) is included in this module.
+### Live Commands
+
+Starting in v4.1.0, you can insert `<live>` into your demo file. When `Start-TypedDemo` reaches this line, it will let you enter a live command. Enter a command carefully and without error. Backspaces will break this step. Due to timing, the first key stroke may not be detected. This feature should be considered *experimental*.
+
+Read command help for [Start-TypedDemo](docs/Start-TypedDemo.md). A [sample file](samples/sampledemo.txt) is included in this module.
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## Sponsorship
 
 If you find this module helpful or valuable, especially if used in a commercial setting, a small token of sponsorship would be deeply appreciated.
-
-last updated: *2021-01-05 16:49:51Z*

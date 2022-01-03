@@ -15,5 +15,5 @@ where-object {$_.WS -ge 10MB} |
 Select-Object Name,Handles,ID,WS
 ::
 clear-host
-Get-PSdrive
+get-psdrive
 popd

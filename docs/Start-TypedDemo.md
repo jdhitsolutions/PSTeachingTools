@@ -16,8 +16,7 @@ Simulate a PowerShell console session
 ### Random (Default)
 
 ```yaml
-Start-TypedDemo [-File] <String> [-RandomMinimum <Int32>] [-RandomMaximum <Int32>] [-Transcript <String>]
- [-NoExecute] [-NewSession] [<CommonParameters>]
+Start-TypedDemo [-File] <String> [-RandomMinimum <Int32>] [-RandomMaximum <Int32>] [-Transcript <String>] [-NoExecute] [-NewSession] [<CommonParameters>]
 ```
 
 ### Static
@@ -71,6 +70,9 @@ However, command history will be persisted to the history and command buffers as
 
 COMMENTS
 Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the beginning of each line. You can't use PowerShell's block comment characters.
+
+LIVE COMMANDS
+Starting in v4.1.0, you can insert <live> into your demo file. When Start-TypedDemo reaches this line, it will let you enter a live command. Enter a command carefully and without error. Backspaces will break this step. Due to timing, the first key stroke may not be detected. This feature should be considered *experimental*.
 
 ## EXAMPLES
 

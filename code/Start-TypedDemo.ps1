@@ -1,9 +1,5 @@
 #requires -modules @{ModuleName='PSReadline';ModuleVersion='2.0.0'}
 
-#TODO validate transcript usage
-#TODO live commands need to write to transcript
-#TODO live commands need to add to history
-
 Function Start-TypedDemo {
     [cmdletBinding(DefaultParameterSetName = "Random")]
     [Alias("std")]
@@ -12,7 +8,7 @@ Function Start-TypedDemo {
         [Parameter(Position = 0, Mandatory = $True, HelpMessage = "Enter the name of a text file with your demo commands")]
         [ValidateScript( { Test-Path $_ })]
         [string]$File,
-        [ValidateScript( { $_ -gt 0 })]
+        [ValidateScript( {$_ -gt 0 })]
         [Parameter(Mandatory,ParameterSetName = "Static")]
         [int]$Pause,
         [Parameter(ParameterSetName = "Random")]
@@ -71,21 +67,42 @@ Function Start-TypedDemo {
                     $list.add($key.character)
                 }
             } #if key available
-            Start-Sleep -millisecond 50
+           # Start-Sleep -millisecond 10
         } while ($typing) #end do
 
         $cmd = $list -join ""
         $sb = [scriptblock]::create($cmd)
-        Invoke-Command -ScriptBlock $sb | Out-Host
+        $start = Get-Date
+        Invoke-Command -ScriptBlock $sb -OutVariable result | Out-Host
+        $end = Get-Date
+        if ($RunningTranscript) {
+            "$(prompt)$Cmd" | Out-File -FilePath $Transcript -Encoding ascii -ErrorAction Stop -Append
+            $result | Out-File -FilePath $Transcript -Encoding ascii -ErrorAction Stop -Append
+        }
         #add to PSReadlineHistory
         [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($cmd)
+
+        $h = @{
+            PSTypeName         = "Microsoft.PowerShell.Commands.HistoryInfo"
+            CommandLine        = $cmd
+            StartExecutionTime = $start
+        }
+
+        [datetime]$end = [datetime]::now
+        $h.Add("EndExecutionTime", $end)
+        $h.Add("ExecutionStatus", "Completed")
+        if ($psversiontable.psversion.major -eq 7) {
+            $h.add("Duration", (New-TimeSpan -Start $start -End $End))
+        }
+        [pscustomobject]$h | Add-History
+
     } #enterCommand function
 
     Function WriteWord {
         [cmdletbinding()]
         Param([string]$command)
 
-        write-debug $command
+        Write-Debug $command
         Function writechar {
             [cmdletbinding()]
             Param([string]$word, [string]$color)
@@ -259,7 +276,7 @@ Start time: $(Get-Date)
     foreach ($command in $commands) {
         #trim off any spaces
         $command = $command.Trim()
-        write-debug "processing: $command"
+        Write-Debug "processing: $command"
         $count++
         #pause until a key is pressed which will then process the next command
         if ($NoMultiLine) {
@@ -367,7 +384,7 @@ Start time: $(Get-Date)
           #      $command = $command.Replace('`', "")
           #  }
             #add the command to the multiline variable
-            write-debug "Adding $command to `$multi"
+            Write-Debug "Adding $command to `$multi"
             $multi += "$command`r"
             #     if (!$command.Endswith('{')) { $multi += ";" }
             #  if ($command -notmatch ",$|{$|}$|\|$|\($") { $multi += " ; " }
@@ -377,12 +394,12 @@ Start time: $(Get-Date)
         elseif (!$NoMultiline) {
             #add next line
             if ($command -match "^::") {
-                write-debug "ending multiline"
+                Write-Debug "ending multiline"
                 WriteWord $multi
                 $NoMultiLine = $True
 
                 $cmd = $multi # $(($multi -replace ';(\s=?)$', '').trim())
-                write-debug "cmd = $cmd"
+                Write-Debug "cmd = $cmd"
                 #Microsoft.PowerShell.Utility\Write-Host "`r"
 
             if ($RunningTranscript) {
@@ -417,7 +434,7 @@ Start time: $(Get-Date)
             }
             }
             else {
-                write-debug "Adding $command to `$multi"
+                Write-Debug "Adding $command to `$multi"
                 $multi += "$command`r"
             }
         }
@@ -426,17 +443,17 @@ Start time: $(Get-Date)
             #TODO This might be deleted
             #  Microsoft.PowerShell.Utility\Write-Host "`r"
             #  Microsoft.PowerShell.Utility\Write-Host ">> " -NoNewline
-            write-debug "show multiline"
+            Write-Debug "show multiline"
             WriteWord $multi
 
             $NoMultiLine = $True
 
-            write-warning "execute multi"
+            Write-Warning "execute multi"
             #If ((PauseIt) -eq "quit") { Return }
             #execute the command unless -NoExecute was specified
             Microsoft.PowerShell.Utility\Write-Host "`r"
             $cmd = $multi # $(($multi -replace ';(\s=?)$', '').trim())
-            write-warning "cmd = $cmd"
+            Write-Warning "cmd = $cmd"
             if ($RunningTranscript) {
                 "$(prompt)$cmd" | Out-File -path $Transcript -Encoding ascii -ErrorAction Stop -Append
             }
@@ -471,7 +488,7 @@ Start time: $(Get-Date)
         #NESTED PROMPTS
         else {
             #TODO I think this can be deleted
-            write-debug "in nested prompts"
+            Write-Debug "in nested prompts"
             Microsoft.PowerShell.Utility\Write-Host "`r"
             Microsoft.PowerShell.Utility\Write-Host ">> " -NoNewline
             If ((PauseIt) -eq "quit") { Return }
@@ -505,7 +522,7 @@ Start time: $(Get-Date)
 
         #reset the prompt unless we've just done the last command
         if (($count -lt $commands.count) -AND ($NoMultiLine)) {
-            write-debug "prompt"
+            Write-Debug "prompt"
             Microsoft.PowerShell.Utility\Write-Host $(prompt) -NoNewline
         }
 
@@ -525,7 +542,7 @@ End time: $(Get-Date)
 "@
         $stopTranscript | Out-File -path $Transcript -Encoding ascii -ErrorAction Stop -Append
     }
-write-debug "end"
+Write-Debug "end"
 } #function
 
 

@@ -1,7 +1,7 @@
 
 <#
 code used to generate the XML format file
-This script file is not an published part of the module
+This script file is not a published part of the module
 #>
 
 #formatting directives for the custom object

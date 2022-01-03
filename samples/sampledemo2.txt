@@ -1,0 +1,12 @@
+#this example uses live commands
+
+Get-Date
+$psversiontable.psversion
+#use <live> to indicate you want to enter a single command
+#type slowly and carefully. Backspaces will break this command
+#Live commands are an experimental feature
+<live>
+
+get-ciminstance win32_bios
+cls
+
