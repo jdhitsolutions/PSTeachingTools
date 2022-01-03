@@ -266,8 +266,15 @@ foreach ($verb in $verbs) {
         #PowerShell code to populate $wordtoComplete
         $global:myvegetables.name | Where-Object { $_ -Like "$WordToComplete*" } |
         ForEach-Object {
+            #wrap items with spaces in quotes [Issue #10]
+            if ($_ -match "\s") {
+                $complete = "'$_'"
+            }
+            else {
+                $complete = $_
+            }
             # completion text,listitem text,result type,Tooltip
-            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+            [System.Management.Automation.CompletionResult]::new($complete, $complete, 'ParameterValue', $complete)
         }
     }
 }

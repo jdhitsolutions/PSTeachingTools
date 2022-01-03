@@ -17,9 +17,9 @@
         <maml:name>Get-Vegetable</maml:name>
         <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>Name</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of a vegetable.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -29,9 +29,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>RootOnly</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Only get root vegetables like carrots or turnips.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -43,9 +43,9 @@
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>Name</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The name of a vegetable.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -55,9 +55,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>RootOnly</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Only get root vegetables like carrots or turnips.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -224,9 +224,9 @@ UPC         Property   int UPC {get;}</dev:code>
         <maml:name>New-Vegetable</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none">
           <maml:name>Name</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>What is the name of the vegetable?</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -236,9 +236,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none">
           <maml:name>Color</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>What is the color of the vegetable? This is a value from the [PSTeachingTools.VegColor] enumeration.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">green</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">red</command:parameterValue>
@@ -257,9 +257,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Count</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>How many vegetables do you want? Pick a number between 1 and 20.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -269,9 +269,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Passthru</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Write the object to the pipeline.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -280,9 +280,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IsRoot">
           <maml:name>Root</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Indicate that this is a root vegetable.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -291,9 +291,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -302,9 +302,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>UPC</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter a valid PLU code. You can search $vegetableupc for a valid code.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -314,9 +314,9 @@ UPC         Property   int UPC {get;}</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -328,9 +328,9 @@ UPC         Property   int UPC {get;}</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="1" aliases="none">
         <maml:name>Color</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>What is the color of the vegetable? This is a value from the [PSTeachingTools.VegColor] enumeration.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">VegColor</command:parameterValue>
         <dev:type>
           <maml:name>VegColor</maml:name>
@@ -340,9 +340,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Count</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>How many vegetables do you want? Pick a number between 1 and 20.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -352,9 +352,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none">
         <maml:name>Name</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>What is the name of the vegetable?</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -364,9 +364,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Passthru</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Write the object to the pipeline.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -376,9 +376,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IsRoot">
         <maml:name>Root</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Indicate that this is a root vegetable.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -388,9 +388,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -400,9 +400,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>UPC</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter a valid PLU code. You can search $vegetableupc for a valid code.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -412,9 +412,9 @@ UPC         Property   int UPC {get;}</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -532,9 +532,9 @@ UPC     Count Name                 State    Color
         <maml:name>Remove-Vegetable</maml:name>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>InputObject</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>A piped in Vegetable object.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
           <dev:type>
             <maml:name>PSVegetable[]</maml:name>
@@ -544,9 +544,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -555,9 +555,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Passthru</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Write the removed object to the pipeline</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -566,9 +566,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -580,9 +580,9 @@ UPC     Count Name                 State    Color
         <maml:name>Remove-Vegetable</maml:name>
         <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>Name</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of a vegetable object.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -592,9 +592,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -603,9 +603,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Passthru</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Write the removed object to the pipeline</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -614,9 +614,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -628,9 +628,9 @@ UPC     Count Name                 State    Color
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -640,9 +640,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>InputObject</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>A piped in Vegetable object.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
         <dev:type>
           <maml:name>PSVegetable[]</maml:name>
@@ -652,9 +652,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>Name</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The name of a vegetable object.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -664,9 +664,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Passthru</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Write the removed object to the pipeline</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -676,9 +676,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -752,6 +752,10 @@ UPC     Count Name                 State    Color
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://bit.ly/3ohVpJy</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Get-Vegetable</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -782,9 +786,9 @@ UPC     Count Name                 State    Color
         <maml:name>Set-Vegetable</maml:name>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>InputObject</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>A piped in vegetable object.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
           <dev:type>
             <maml:name>PSVegetable[]</maml:name>
@@ -794,9 +798,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para></maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -805,9 +809,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="state">
           <maml:name>CookingState</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Raw</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Boiled</command:parameterValue>
@@ -827,9 +831,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Count</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Set the number of each vegetable. This should be a number between 1 and 20.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -839,9 +843,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Passthru</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Write the object to the pipeline.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -850,9 +854,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para></maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -864,9 +868,9 @@ UPC     Count Name                 State    Color
         <maml:name>Set-Vegetable</maml:name>
         <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>Name</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of a vegetable.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -876,9 +880,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para></maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -887,9 +891,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="state">
           <maml:name>CookingState</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Raw</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">Boiled</command:parameterValue>
@@ -909,9 +913,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Count</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Set the number of each vegetable. This should be a number between 1 and 20.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -921,9 +925,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Passthru</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Write the object to the pipeline.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -932,9 +936,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para></maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -946,9 +950,9 @@ UPC     Count Name                 State    Color
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para></maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -958,9 +962,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="state">
         <maml:name>CookingState</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Set the vegetable's cooking state. This is a value from the [PSTeachingTools.VegStatus] enumeration.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">VegStatus</command:parameterValue>
         <dev:type>
           <maml:name>VegStatus</maml:name>
@@ -970,9 +974,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Count</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Set the number of each vegetable. This should be a number between 1 and 20.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -982,9 +986,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>InputObject</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>A piped in vegetable object.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">PSVegetable[]</command:parameterValue>
         <dev:type>
           <maml:name>PSVegetable[]</maml:name>
@@ -994,9 +998,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="true" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>Name</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The name of a vegetable.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -1006,9 +1010,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Passthru</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Write the object to the pipeline.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1018,9 +1022,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para></maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1132,15 +1136,16 @@ UPC     Count Name                 State    Color
       <maml:para>SCOPE All the commands in your demo script are executed in the context of the Start-TypedDemo function. This means you have to be very aware of scope. While you can access items in the global scope like PSDrives, anything you create in the demo script will not persist.</maml:para>
       <maml:para>However, command history will be persisted to the history and command buffers as well as the PSReadline history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.</maml:para>
       <maml:para>COMMENTS Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the beginning of each line. You can't use PowerShell's block comment characters.</maml:para>
+      <maml:para>LIVE COMMANDS Starting in v4.1.0, you can insert &lt;live&gt; into your demo file. When Start-TypedDemo reaches this line, it will let you enter a live command. Enter a command carefully and without error. Backspaces will break this step. Due to timing, the first key stroke may not be detected. This feature should be considered experimental .</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Start-TypedDemo</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>File</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The file name of PowerShell commands to execute. It can have any extension you choose.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -1150,9 +1155,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Pause</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The typing speed interval between characters in milliseconds. The recommended value is 100.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -1162,9 +1167,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NoExecute</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Do not execute any of the commands.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1173,9 +1178,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NewSession</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1187,9 +1192,9 @@ UPC     Count Name                 State    Color
         <maml:name>Start-TypedDemo</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>File</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The file name of PowerShell commands to execute. It can have any extension you choose.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -1199,9 +1204,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>RandomMinimum</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The minimum time interval between characters in milliseconds. The default is 50.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -1211,9 +1216,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>RandomMaximum</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The maximum time interval between characters in milliseconds. The default is 140.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -1223,9 +1228,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Transcript</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The file name and path for a transcript session file. Existing files will be overwritten. The transcript will have a minimum header.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -1235,9 +1240,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NoExecute</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Do not execute any of the commands.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1246,9 +1251,9 @@ UPC     Count Name                 State    Color
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NewSession</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1260,9 +1265,9 @@ UPC     Count Name                 State    Color
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>File</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The file name of PowerShell commands to execute. It can have any extension you choose.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -1272,9 +1277,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Pause</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The typing speed interval between characters in milliseconds. The recommended value is 100.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -1284,9 +1289,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>RandomMinimum</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The minimum time interval between characters in milliseconds. The default is 50.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -1296,9 +1301,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>RandomMaximum</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The maximum time interval between characters in milliseconds. The default is 140.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -1308,9 +1313,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Transcript</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The file name and path for a transcript session file. Existing files will be overwritten. The transcript will have a minimum header.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -1320,9 +1325,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>NoExecute</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Do not execute any of the commands.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1332,9 +1337,9 @@ UPC     Count Name                 State    Color
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>NewSession</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Simulate a new PowerShell session with the copyright header and a prompt. This works best if you start your demo from the C: drive. The header will be mocked depending on the version of PowerShell you are running. This will only work with Windows PowerShell 5.1 and PowerShell 7.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>

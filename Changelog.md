@@ -1,5 +1,15 @@
 # Change Log for PSTeachingTools
 
+## 4.1.0
+
++ Updated `Start-TypedDemo` to allow the use of live commands. This is an *experimental* feature.
++ Updated `Start-TypedDemo` to simulate PSReadline coloring using AST processing
++ Updated `Start-TypedDemo` to better simulate new lines.
++ Updated `Start-TypedDemo` to better distinguish `::` as a multi-line indicator instead of the static member operator.
++ Fixed argument completer for vegetable commands to wrap items with spaces in quotes. [Issue #10](https://github.com/jdhitsolutions/PSTeachingTools/issues/10)
++ Created a `samples` folder.
++ Finally resolved case of the `docs` folder.
+
 ## v4.0.0
 
 + Updated license.
