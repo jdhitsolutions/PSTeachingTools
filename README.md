@@ -18,10 +18,10 @@ The module should work in both Windows PowerShell and PowerShell 7, including cr
 
 This PowerShell module includes tools and techniques for teaching PowerShell. Many of the commands will create a set of sample objects and commands that can be used to demonstrate a variety of PowerShell techniques and concepts without having to worry about anything technical like Active Directory, services, or file objects.
 
-* [Get-Vegetable](Docs/Get-Vegetable.md)
-* [Set-Vegetable](Docs/Set-Vegetable.md)
-* [Remove-Vegetable](Docs/Remove-Vegetable.md)
-* [New-Vegetable](Docs/New-Vegetable.md)
+* [Get-Vegetable](docs/Get-Vegetable.md)
+* [Set-Vegetable](docs/Set-Vegetable.md)
+* [Remove-Vegetable](docs/Remove-Vegetable.md)
+* [New-Vegetable](docs/New-Vegetable.md)
 
 Once the module is imported, you can use these commands like any other PowerShell command.
 
