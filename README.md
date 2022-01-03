@@ -18,10 +18,10 @@ The module should work in both Windows PowerShell and PowerShell 7, including cr
 
 This PowerShell module includes tools and techniques for teaching PowerShell. Many of the commands will create a set of sample objects and commands that can be used to demonstrate a variety of PowerShell techniques and concepts without having to worry about anything technical like Active Directory, services, or file objects.
 
-* [Get-Vegetable](Docs/Get-Vegetable.md)
-* [Set-Vegetable](Docs/Set-Vegetable.md)
-* [Remove-Vegetable](Docs/Remove-Vegetable.md)
-* [New-Vegetable](Docs/New-Vegetable.md)
+* [Get-Vegetable](docs/Get-Vegetable.md)
+* [Set-Vegetable](docs/Set-Vegetable.md)
+* [Remove-Vegetable](docs/Remove-Vegetable.md)
+* [New-Vegetable](docs/New-Vegetable.md)
 
 Once the module is imported, you can use these commands like any other PowerShell command.
 
@@ -63,7 +63,7 @@ See the [about_psteachingtools](docs/about_PSTeachingTools.md) help file for mor
 
 The module also includes a function for simulating an interactive PowerShell console session. You can type your commands in a file and have the function "play back" the commands just as if you were typing the commands. The function will pause after every `|` character. Pressing `Enter` will advance the demo. The commands from the demo file will also be added to the session's command history.
 
-Read command help for [Start-TypedDemo](Docs/Start-TypedDemo.md). A [sample file](assets/sampledemo.txt) is included in this module.
+Read command help for [Start-TypedDemo](docs/Start-TypedDemo.md). A [sample file](assets/sampledemo.txt) is included in this module.
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## Sponsorship
