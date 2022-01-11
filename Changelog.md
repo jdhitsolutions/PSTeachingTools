@@ -1,5 +1,10 @@
 # Change Log for PSTeachingTools
 
+## 4.2.0
+
++ Reorganized the module separating functions out to separate files.
++ Updated `Set-Vegetable` to fix bugs parsing input. [Issue #11](https://github.com/jdhitsolutions/PSTeachingTools/issues/11)
+
 ## 4.1.0
 
 + Updated `Start-TypedDemo` to allow the use of live commands. This is an *experimental* feature.

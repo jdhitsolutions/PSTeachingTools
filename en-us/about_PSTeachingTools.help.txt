@@ -80,6 +80,7 @@ EXAMPLES
     The default display uses the format.ps1xml file which does NOT reflect the
     complete object. This is typical PowerShell behavior. Get-Process and
     Process objects are a good example.
+
     Here are some other ways you could use the command to demonstrate common
     PowerShell techniques and concepts:
 

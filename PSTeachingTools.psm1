@@ -5,7 +5,11 @@ if ($myinvocation.line -match "-verbose") {
 
 #dot source teaching commands and tools
 Write-Verbose "loading vegatables.ps1"
-. $PSScriptRoot\code\Vegetables.ps1
+Get-Childitem -path $PSScriptRoot\code\*Vegetable*.ps1 |
+ForEach-Object {
+    . $_.fullname
+}
+
 
 #create a global variable with PLU data
 Write-Verbose "Creating `$vegetableplu"
@@ -27,10 +31,11 @@ if (Test-Path -path $rawPath) {
     Write-Verbose "Converting vegetable data from $Rawpath"
     $raw = Get-Content -Path $rawpath | ConvertFrom-Json
     $raw | New-Vegetable
-    Write-Verbose "Updating vegetables"
+<#     Write-Verbose "Updating vegetables"
     foreach ($item in $global:myvegetables) {
         $raw.where({$_.upc -eq $item.upc}) | Set-Vegetable
     }
+ #>
 }
 else {
     Write-Warning "Failed to find $rawpath"

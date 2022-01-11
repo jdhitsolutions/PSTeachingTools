@@ -13,18 +13,17 @@ Set a vegetable property
 
 ## SYNTAX
 
-### name (Default)
+### input (Default)
 
 ```yaml
-Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <VegStatus>] [-Passthru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-Vegetable [[-InputObject] <PSVegetable[]>] [-Count <Int32>]
+[-CookingState <VegStatus>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### input
+### name
 
 ```yaml
-Set-Vegetable [[-InputObject] <PSVegetable[]>] [-Count <Int32>] [-CookingState <VegStatus>] [-Passthru]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Vegetable [[-Name] <String>] [-Count <Int32>] [-CookingState <VegStatus>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -78,7 +77,7 @@ Accepted values: Raw, Boiled, Steamed, Sauteed, Fried, Baked, Roasted, Grilled
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -94,7 +93,7 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -126,8 +125,8 @@ Aliases:
 Required: False
 Position: 0
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: True
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
 ```
 
 ### -Passthru
@@ -161,7 +160,6 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

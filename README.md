@@ -14,7 +14,7 @@ If installing on PowerShell 7 you may need to include the `-scope currentuser` p
 
 The module should work in both Windows PowerShell and PowerShell 7, including cross-platform. Please post an issue with any feedback, suggestions, or problems.
 
-## Teaching PowerShell
+## :teacher: Teaching PowerShell
 
 This PowerShell module includes tools and techniques for teaching PowerShell. Many of the commands will create a set of sample objects and commands that can be used to demonstrate a variety of PowerShell techniques and concepts without having to worry about anything technical like Active Directory, services, or file objects.
 
@@ -29,7 +29,7 @@ Once the module is imported, you can use these commands like any other PowerShel
 
 ![setting objects](assets/set-vegetable.jpg)
 
-Beginning in v4.0.0 of this module, the custom vegetable objects are defined as true objects with a variety of properties and methods. Some of the properties are read-only.
+Beginning in v4.0.0 of this module, the custom vegetable objects are exposed as publically-defined objects with a variety of properties and methods. Some of the properties are read-only. Associated enumerations are also now publically available.
 
 ```powershell
 PS C:\> Get-Vegetable Corn | Get-Member
@@ -51,6 +51,9 @@ IsPeeled    Property   bool IsPeeled {get;set;}
 IsRoot      Property   bool IsRoot {get;}
 Name        Property   string Name {get;}
 UPC         Property   int UPC {get;}
+
+PS C:\> [PSTeachingTools.VegStatus]::Sauteed
+Sauteed
 ```
 
 The PSVegetable object also has a custom format file with defined table views.
@@ -59,7 +62,7 @@ The primary idea behind these commands is that you can use them to teach core Po
 
 See the [about_psteachingtools](docs/about_PSTeachingTools.md) help file for more information.
 
-## Typed Demos
+## :robot: Typed Demos
 
 The module also includes a function for simulating an interactive PowerShell console session. You can type your commands in a file and have the function "play back" the commands just as if you were typing the commands. The function will pause after every `|` character. Pressing `Enter` will advance the demo. The commands from the demo file will also be added to the session's command history.
 
