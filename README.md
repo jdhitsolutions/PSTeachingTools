@@ -76,4 +76,3 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 ## Sponsorship
 
 If you find this module helpful or valuable, especially if used in a commercial setting, a small token of sponsorship would be deeply appreciated.
-
