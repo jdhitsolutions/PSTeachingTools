@@ -7,10 +7,10 @@
 Install this module from the PowerShell Gallery:
 
 ```powershell
-Install-Module psteachingtools [-scope currentuser]
+Install-Module PSTeachingTools [-scope CurrentUser]
 ```
 
-If you are installing this module on PowerShell 7.x, you may need to include the `-scope currentuser` parameter. __Do not__ attempt to download and install from this repository unless you are an experienced PowerShell user.
+If you are installing this module on PowerShell 7.x, you may need to include the `-scope CurrentUser` parameter. __Do Not__ attempt to download and install from this repository unless you are an experienced PowerShell user.
 
 The module should work in both Windows PowerShell and PowerShell 7, including cross-platform. Please post an issue with any feedback, suggestions, or problems.
 
@@ -18,10 +18,10 @@ The module should work in both Windows PowerShell and PowerShell 7, including cr
 
 This PowerShell module includes tools and techniques for teaching PowerShell. Many of the commands will create a set of sample objects and commands that can be used to demonstrate a variety of PowerShell techniques and concepts without having to worry about anything technical like Active Directory, services, or file objects.
 
-* [Get-Vegetable](docs/Get-Vegetable.md)
-* [Set-Vegetable](docs/Set-Vegetable.md)
-* [Remove-Vegetable](docs/Remove-Vegetable.md)
-* [New-Vegetable](docs/New-Vegetable.md)
+- [Get-Vegetable](docs/Get-Vegetable.md)
+- [Set-Vegetable](docs/Set-Vegetable.md)
+- [Remove-Vegetable](docs/Remove-Vegetable.md)
+- [New-Vegetable](docs/New-Vegetable.md)
 
 Once the module is imported, you can use these commands like any other PowerShell command.
 
@@ -29,38 +29,53 @@ Once the module is imported, you can use these commands like any other PowerShel
 
 ![setting objects](assets/set-vegetable.jpg)
 
-Beginning in v4.0.0 of this module, the custom vegetable objects are exposed as publically-defined objects with a variety of properties and methods. Some of the properties are read-only. Associated enumerations are also now publically available.
+Beginning in v4.0.0 of this module, the custom vegetable objects are exposed as publicly-defined objects with a variety of properties and methods. Some of the properties are read-only. Associated enumerations are also now publicly available.
 
 ```powershell
 PS C:\> Get-Vegetable Corn | Get-Member
 
    TypeName: PSTeachingTools.PSVegetable
 
-Name        MemberType Definition
-----        ---------- ----------
-Equals      Method     bool Equals(System.Object obj)
-GetHashCode Method     int GetHashCode()
-GetType     Method     type GetType()
-Peel        Method     void Peel()
-Prepare     Method     void Prepare(PSTeachingTools.VegStatus State)
-ToString    Method     string ToString()
-Color       Property   PSTeachingTools.VegColor Color {get;}
-CookedState Property   PSTeachingTools.VegStatus CookedState {get;set;}
-Count       Property   int Count {get;set;}
-IsPeeled    Property   bool IsPeeled {get;set;}
-IsRoot      Property   bool IsRoot {get;}
-Name        Property   string Name {get;}
-UPC         Property   int UPC {get;}
+Name        MemberType    Definition
+----        ----------    ----------
+State       AliasProperty State = CookedState
+Equals      Method        bool Equals(System.Object obj)
+GetHashCode Method        int GetHashCode()
+GetType     Method        type GetType()
+Peel        Method        void Peel()
+Prepare     Method        void Prepare(PSTeachingTools.VegStatus State)
+ToString    Method        string ToString()
+Color       Property      PSTeachingTools.VegColor Color {get;}
+CookedState Property      PSTeachingTools.VegStatus CookedState {get;set;}
+Count       Property      int Count {get;set;}
+IsPeeled    Property      bool IsPeeled {get;set;}
+IsRoot      Property      bool IsRoot {get;}
+Name        Property      string Name {get;}
+UPC         Property      int UPC {get;}
 
 PS C:\> [PSTeachingTools.VegStatus]::Sauteed
 Sauteed
 ```
 
-The PSVegetable object also has a custom format file with defined table views.
+The PSVegetable object has a custom format file with defined table views.
+
+```powershell
+PS C:\> Get-FormatView PSTeachingTools.PSVegetable
+
+   Type: PSTeachingTools.PSVegetable
+
+Format    Name
+------    ----
+Table     default
+Table     State
+Table     color
+```
+
+The `Color` view relies on ANSI values stored in the `$AnsiVegColor` hashtable.
 
 The primary idea behind these commands is that you can use them to teach core PowerShell concepts and techniques. Once the student understands how vegetable objects work in the pipeline, it is a small step to files, processes, and services.
 
-See the [about_psteachingtools](docs/about_PSTeachingTools.md) help file for more information.
+See the [about_PSTeachingTools](docs/about_PSTeachingTools.md) help file for more information.
 
 ## :robot: Typed Demos
 

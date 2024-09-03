@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version: https://bit.ly/3oe0N01
+online version: https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Get-Vegetable.md
 schema: 2.0.0
 ---
 
@@ -28,37 +28,40 @@ Use this command to retrieve vegetable objects from the local computer. The defa
 ```powershell
 PS C:\> Get-Vegetable
 
-
 UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
-4078       12 corn                 Roasted  yellow
-4064        4 tomato               Raw      red
-4062       11 cucumber             Raw      green
-4562       10 carrot               Raw      orange
-4089       13 radish               Raw      red
-4674       14 peas                 Steamed  green
-4811       12 turnip               Boiled   purple
-4725       18 russet potato        Fried    brown
-4060       15 broccoli             Steamed  green
-4067        7 zucchini             Raw      green
-4090        4 spinach              Raw      green
-4572        7 cauliflower          Steamed  white
-3125       17 habanero pepper      Raw      orange
-4677       16 Anaheim pepper       Raw      green
-4088       19 red bell pepper      Sauteed  red
-4081        6 eggplant             Fried    purple
-4604        2 endive               Raw      green
+4078       12 Corn                 Roasted  yellow
+4064        4 Tomato               Raw      red
+4062       11 Cucumber             Raw      green
+4562       10 Carrot               Raw      orange
+4089       13 Radish               Raw      red
+4674       14 Peas                 Steamed  green
+4811       12 Turnip               Boiled   purple
+4725       18 Russet Potato        Fried    brown
+4060       15 Broccoli             Steamed  green
+4067        7 Zucchini             Raw      green
+4090        4 Spinach              Raw      green
+4572        7 Cauliflower          Steamed  white
+3125       17 Habanero Pepper      Raw      orange
+4677       16 Anaheim Pepper       Raw      green
+4088       19 Red Bell Pepper      Sauteed  red
+4081        6 Eggplant             Fried    purple
+4604        2 Endive               Raw      green
+
 ```
 
 ### Example 2
 
 ```powershell
-PS C:\> Get-Vegetable eggplant
+PS C:\> Get-Vegetable Eggplant
 
 UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
-4081        6 eggplant             Fried    purple
+4081        6 Eggplant             Fried    purple
+
 ```
+
+Get a vegetable object by name.
 
 ### Example 3
 
@@ -67,11 +70,13 @@ PS C:\> Get-Vegetable -RootOnly
 
 UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
-4562       10 carrot               Raw      orange
-4089       13 radish               Raw      red
-4811       12 turnip               Boiled   purple
-4725       18 russet potato        Fried    brown
+4562       10 Carrot               Raw      orange
+4089       13 Radish               Raw      red
+4811       12 Turnip               Boiled   purple
+4725       18 Russet Potato        Fried    brown
 ```
+
+Get only root vegetables.
 
 ### Example 4
 
@@ -97,22 +102,25 @@ PS C:\> Get-Vegetable | Get-Member
 
    TypeName: PSTeachingTools.PSVegetable
 
-Name        MemberType Definition
-----        ---------- ----------
-Equals      Method     bool Equals(System.Object obj)
-GetHashCode Method     int GetHashCode()
-GetType     Method     type GetType()
-Peel        Method     void Peel()
-Prepare     Method     void Prepare(PSTeachingTools.VegStatus State)
-ToString    Method     string ToString()
-Color       Property   PSTeachingTools.VegColor Color {get;}
-CookedState Property   PSTeachingTools.VegStatus CookedState {get;set;}
-Count       Property   int Count {get;set;}
-IsPeeled    Property   bool IsPeeled {get;set;}
-IsRoot      Property   bool IsRoot {get;}
-Name        Property   string Name {get;}
-UPC         Property   int UPC {get;}
+Name        MemberType    Definition
+----        ----------    ----------
+State       AliasProperty State = CookedState
+Equals      Method        bool Equals(System.Object obj)
+GetHashCode Method        int GetHashCode()
+GetType     Method        type GetType()
+Peel        Method        void Peel()
+Prepare     Method        void Prepare(PSTeachingTools.VegStatus State)
+ToString    Method        string ToString()
+Color       Property      PSTeachingTools.VegColor Color {get;}
+CookedState Property      PSTeachingTools.VegStatus CookedState {get;set;}
+Count       Property      int Count {get;set;}
+IsPeeled    Property      bool IsPeeled {get;set;}
+IsRoot      Property      bool IsRoot {get;}
+Name        Property      string Name {get;}
+UPC         Property      int UPC {get;}
 ```
+
+Discover the properties and methods of a vegetable object.
 
 ## PARAMETERS
 

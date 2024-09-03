@@ -1,5 +1,5 @@
 Function Remove-Vegetable {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     [OutputType("none", "PSTeachingTools.PSVegetable")]
     [Alias("rveg")]
     Param(
@@ -16,37 +16,37 @@ Function Remove-Vegetable {
             ValueFromPipelineByPropertyName,
             ParameterSetName = "name"
         )]
-        [string]$Name,
+        [String]$Name,
 
         [Parameter(HelpMessage = "Write the removed object to the pipeline")]
-        [switch]$Passthru
+        [Switch]$PassThru
     )
     Begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
     } #begin
 
     Process {
         if ($PSCmdlet.ParameterSetName -eq 'name') {
-            $inputObject = $global:myvegetables.Where( { $_.Name -like $Name })
-            if (-Not $inputObject) {
+            $InputObject = $global:MyVegetables.Where( { $_.Name -like $Name })
+            if (-Not $InputObject) {
                 Write-Warning "Failed to find a vegetable called $name"
             }
         }
         If ($InputObject) {
             foreach ($item in $InputObject) {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Removing $($item.name)"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Removing $($item.name)"
                 if ($PSCmdlet.ShouldProcess($item.name)) {
-                    [void]($global:myvegetables.remove($item))
-                    if ($passthru) {
+                    [void]($global:MyVegetables.remove($item))
+                    if ($PassThru) {
                         $item
                     }
                 } #WhatIf
             } #foreach item
-        } #if inputobject
+        } #if InputObject
     } #process
 
     End {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
     } #end
 
 }

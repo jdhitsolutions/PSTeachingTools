@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version: https://bit.ly/3ohVpJy
+online version: https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Remove-Vegetable.md
 schema: 2.0.0
 ---
 

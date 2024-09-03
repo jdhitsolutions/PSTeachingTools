@@ -96,39 +96,38 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-Vegetable
 
-
 UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
-4078       12 corn                 Roasted  yellow
-4064        4 tomato               Raw      red
-4062       11 cucumber             Raw      green
-4562       10 carrot               Raw      orange
-4089       13 radish               Raw      red
-4674       14 peas                 Steamed  green
-4811       12 turnip               Boiled   purple
-4725       18 russet potato        Fried    brown
-4060       15 broccoli             Steamed  green
-4067        7 zucchini             Raw      green
-4090        4 spinach              Raw      green
-4572        7 cauliflower          Steamed  white
-3125       17 habanero pepper      Raw      orange
-4677       16 Anaheim pepper       Raw      green
-4088       19 red bell pepper      Sauteed  red
-4081        6 eggplant             Fried    purple
-4604        2 endive               Raw      green</dev:code>
+4078       12 Corn                 Roasted  yellow
+4064        4 Tomato               Raw      red
+4062       11 Cucumber             Raw      green
+4562       10 Carrot               Raw      orange
+4089       13 Radish               Raw      red
+4674       14 Peas                 Steamed  green
+4811       12 Turnip               Boiled   purple
+4725       18 Russet Potato        Fried    brown
+4060       15 Broccoli             Steamed  green
+4067        7 Zucchini             Raw      green
+4090        4 Spinach              Raw      green
+4572        7 Cauliflower          Steamed  white
+3125       17 Habanero Pepper      Raw      orange
+4677       16 Anaheim Pepper       Raw      green
+4088       19 Red Bell Pepper      Sauteed  red
+4081        6 Eggplant             Fried    purple
+4604        2 Endive               Raw      green</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-Vegetable eggplant
+        <dev:code>PS C:\&gt; Get-Vegetable Eggplant
 
 UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
-4081        6 eggplant             Fried    purple</dev:code>
+4081        6 Eggplant             Fried    purple</dev:code>
         <dev:remarks>
-          <maml:para></maml:para>
+          <maml:para>Get a vegetable object by name.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -137,12 +136,12 @@ UPC     Count Name                 State    Color
 
 UPC     Count Name                 State    Color
 ---     ----- ----                 -----    -----
-4562       10 carrot               Raw      orange
-4089       13 radish               Raw      red
-4811       12 turnip               Boiled   purple
-4725       18 russet potato        Fried    brown</dev:code>
+4562       10 Carrot               Raw      orange
+4089       13 Radish               Raw      red
+4811       12 Turnip               Boiled   purple
+4725       18 Russet Potato        Fried    brown</dev:code>
         <dev:remarks>
-          <maml:para></maml:para>
+          <maml:para>Get only root vegetables.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -167,30 +166,31 @@ Count Name                      Group
 
    TypeName: PSTeachingTools.PSVegetable
 
-Name        MemberType Definition
-----        ---------- ----------
-Equals      Method     bool Equals(System.Object obj)
-GetHashCode Method     int GetHashCode()
-GetType     Method     type GetType()
-Peel        Method     void Peel()
-Prepare     Method     void Prepare(PSTeachingTools.VegStatus State)
-ToString    Method     string ToString()
-Color       Property   PSTeachingTools.VegColor Color {get;}
-CookedState Property   PSTeachingTools.VegStatus CookedState {get;set;}
-Count       Property   int Count {get;set;}
-IsPeeled    Property   bool IsPeeled {get;set;}
-IsRoot      Property   bool IsRoot {get;}
-Name        Property   string Name {get;}
-UPC         Property   int UPC {get;}</dev:code>
+Name        MemberType    Definition
+----        ----------    ----------
+State       AliasProperty State = CookedState
+Equals      Method        bool Equals(System.Object obj)
+GetHashCode Method        int GetHashCode()
+GetType     Method        type GetType()
+Peel        Method        void Peel()
+Prepare     Method        void Prepare(PSTeachingTools.VegStatus State)
+ToString    Method        string ToString()
+Color       Property      PSTeachingTools.VegColor Color {get;}
+CookedState Property      PSTeachingTools.VegStatus CookedState {get;set;}
+Count       Property      int Count {get;set;}
+IsPeeled    Property      bool IsPeeled {get;set;}
+IsRoot      Property      bool IsRoot {get;}
+Name        Property      string Name {get;}
+UPC         Property      int UPC {get;}</dev:code>
         <dev:remarks>
-          <maml:para></maml:para>
+          <maml:para>Discover the properties and methods of a vegetable object.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3oe0N01</maml:uri>
+        <maml:uri>https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Get-Vegetable.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Set-Vegetable</maml:linkText>
@@ -303,7 +303,7 @@ UPC         Property   int UPC {get;}</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>UPC</maml:name>
           <maml:description>
-            <maml:para>Enter a valid PLU code. You can search $vegetableupc for a valid code.</maml:para>
+            <maml:para>Enter a valid PLU code. You can search $VegetablePLU for a valid code.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -401,7 +401,7 @@ UPC         Property   int UPC {get;}</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>UPC</maml:name>
         <maml:description>
-          <maml:para>Enter a valid PLU code. You can search $vegetableupc for a valid code.</maml:para>
+          <maml:para>Enter a valid PLU code. You can search $VegetablePLU for a valid code.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -499,7 +499,7 @@ UPC     Count Name                 State    Color
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/389v9vb</maml:uri>
+        <maml:uri>https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/New-Vegetable.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-Vegetable</maml:linkText>
@@ -753,7 +753,7 @@ UPC     Count Name                 State    Color
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/3ohVpJy</maml:uri>
+        <maml:uri>https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Remove-Vegetable.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-Vegetable</maml:linkText>
@@ -1097,7 +1097,7 @@ UPC     Count Name                 State    Color
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/2XmCCkB</maml:uri>
+        <maml:uri>https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Set-Vegetable.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-Vegetable</maml:linkText>
@@ -1134,7 +1134,7 @@ UPC     Count Name                 State    Color
       <maml:para>The function will simulate a nested prompt. Press any key after the last &gt;&gt; to execute. Avoid using the line continuation character in your demo file.</maml:para>
       <maml:para>TIMING By default the function will insert a random pause interval between characters. This is a random value in milliseconds between the -RandomMinimum and -RandomMaximum parameters which have default values of 50 and 140 respectively. If you want a static or consistent interval, then use the -Pause parameter. The recommended value is 80.</maml:para>
       <maml:para>SCOPE All the commands in your demo script are executed in the context of the Start-TypedDemo function. This means you have to be very aware of scope. While you can access items in the global scope like PSDrives, anything you create in the demo script will not persist.</maml:para>
-      <maml:para>However, command history will be persisted to the history and command buffers as well as the PSReadline history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.</maml:para>
+      <maml:para>However, command history will be persisted to the history and command buffers as well as the PSReadLine history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.</maml:para>
       <maml:para>COMMENTS Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the beginning of each line. You can't use PowerShell's block comment characters.</maml:para>
       <maml:para>LIVE COMMANDS Starting in v4.1.0, you can insert &lt;live&gt; into your demo file. When Start-TypedDemo reaches this line, it will let you enter a live command. Enter a command carefully and without error. Backspaces will break this step. Due to timing, the first key stroke may not be detected. This feature should be considered experimental .</maml:para>
     </maml:description>
@@ -1399,7 +1399,7 @@ UPC     Count Name                 State    Color
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://bit.ly/38axyWq</maml:uri>
+        <maml:uri>https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Start-TypedDemo.md</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>

@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version: https://bit.ly/38axyWq
+online version: https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/Start-TypedDemo.md
 schema: 2.0.0
 ---
 
@@ -66,7 +66,7 @@ By default the function will insert a random pause interval between characters. 
 SCOPE
 All the commands in your demo script are executed in the context of the Start-TypedDemo function. This means you have to be very aware of scope. While you can access items in the global scope like PSDrives, anything you create in the demo script will not persist.
 
-However, command history will be persisted to the history and command buffers as well as the PSReadline history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.
+However, command history will be persisted to the history and command buffers as well as the PSReadLine history file. This allows you to use the Up Arrow or the history commands to find items you ran in the demo.
 
 COMMENTS
 Any line that begins with # will be treated as a comment and skipped. If you have a multi-line comment you will need to put a # at the beginning of each line. You can't use PowerShell's block comment characters.

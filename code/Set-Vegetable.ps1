@@ -1,5 +1,5 @@
 Function Set-Vegetable {
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = "input")]
+    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "input")]
     [OutputType("None", "PSTeachingTools.PSVegetable")]
     [Alias("sveg")]
 
@@ -16,28 +16,28 @@ Function Set-Vegetable {
             ValueFromPipeline,
             ParameterSetName = "name"
         )]
-        [string]$Name,
+        [String]$Name,
 
         [Parameter()]
-        [int]$Count,
+        [Int]$Count,
 
         [Parameter()]
         [alias("state")]
         [PSTeachingTools.VegStatus]$CookingState,
 
-        [switch]$Passthru
+        [Switch]$PassThru
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
     } #begin
 
     Process {
-        Write-Verbose "[PROCESS] Detected parameter set $($pscmdlet.ParameterSetName)"
+        Write-Verbose "[PROCESS] Detected parameter set $($PSCmdlet.ParameterSetName)"
         $PSBoundParameters | Out-String | Write-Verbose
         if ($PSCmdlet.ParameterSetName -eq 'name') {
-            $inputObject = $global:myvegetables.Where( { $_.Name -like $Name })
-            if (-Not $inputObject) {
+            $InputObject = $global:MyVegetables.Where( { $_.Name -like $Name })
+            if (-Not $InputObject) {
                 Write-Warning "Failed to find a vegetable called $name"
             }
         }
@@ -53,7 +53,7 @@ Function Set-Vegetable {
                         Write-Verbose "[PROCESS] Updating count to $count"
                         $item.count = $count
                     }
-                    if ($Passthru) {
+                    if ($PassThru) {
                         $item
                     }
                 }
@@ -62,6 +62,6 @@ Function Set-Vegetable {
     }
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }

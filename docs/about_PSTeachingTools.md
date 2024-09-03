@@ -56,30 +56,27 @@ UPC     Count Name                 State    Color
 4088       19 red bell pepper      Sauteed  red
 4081        6 eggplant             Fried    purple
 4604        2 endive               Raw      green
-```
 
-When you import the module, a set of vegetables is generated from a JSON file.
-
-```powershell
 PS C:\> Get-Vegetable corn | Get-Member
 
    TypeName: PSTeachingTools.PSVegetable
 
-Name        MemberType Definition
-----        ---------- ----------
-Equals      Method     bool Equals(System.Object obj)
-GetHashCode Method     int GetHashCode()
-GetType     Method     type GetType()
-Peel        Method     void Peel()
-Prepare     Method     void Prepare(PSTeachingTools.VegStatus State)
-ToString    Method     string ToString()
-Color       Property   PSTeachingTools.VegColor Color {get;}
-CookedState Property   PSTeachingTools.VegStatus CookedState {get;set;}
-Count       Property   int Count {get;set;}
-IsPeeled    Property   bool IsPeeled {get;set;}
-IsRoot      Property   bool IsRoot {get;}
-Name        Property   string Name {get;}
-UPC         Property   int UPC {get;}
+Name        MemberType    Definition
+----        ----------    ----------
+State       AliasProperty State = CookedState
+Equals      Method        bool Equals(System.Object obj)
+GetHashCode Method        int GetHashCode()
+GetType     Method        type GetType()
+Peel        Method        void Peel()
+Prepare     Method        void Prepare(PSTeachingTools.VegStatus State)
+ToString    Method        string ToString()
+Color       Property      PSTeachingTools.VegColor Color {get;}
+CookedState Property      PSTeachingTools.VegStatus CookedState {get;set;}
+Count       Property      int Count {get;set;}
+IsPeeled    Property      bool IsPeeled {get;set;}
+IsRoot      Property      bool IsRoot {get;}
+Name        Property      string Name {get;}
+UPC         Property      int UPC {get;}
 ```
 
 The default display uses the format.ps1xml file which does NOT reflect the
@@ -141,6 +138,20 @@ Grilled
 
 PS C:\> [PSTeachingTools.PSVegetable]::new.OverloadDefinitions
 PSTeachingTools.PSVegetable new(string VegetableName, bool Root, PSTeachingTools.VegColor VegetableColor, int UPCCode)
+```
+
+The PSVegetable object has a custom format file with defined table views.
+
+```powershell
+PS C:\> Get-FormatView PSTeachingTools.PSVegetable
+
+   Type: PSTeachingTools.PSVegetable
+
+Format    Name
+------    ----
+Table     default
+Table     State
+Table     color
 ```
 
 # SEE ALSO

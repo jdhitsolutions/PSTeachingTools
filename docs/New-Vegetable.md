@@ -1,7 +1,7 @@
 ---
 external help file: PSTeachingTools-help.xml
 Module Name: PSTeachingTools
-online version: https://bit.ly/389v9vb
+online version: https://github.com/jdhitsolutions/PSTeachingTools/blob/master/docs/New-Vegetable.md
 schema: 2.0.0
 ---
 
@@ -14,8 +14,7 @@ Create a new vegetable object.
 ## SYNTAX
 
 ```yaml
-New-Vegetable [-Name] <String> [-Color] <VegColor> [-Count <Int32>] [-Root] -UPC <Int32> [-Passthru] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+New-Vegetable [-Name] <String> [-Color] <VegColor> [-Count <Int32>] [-Root] -UPC <Int32> [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -164,7 +163,7 @@ Accept wildcard characters: False
 
 ### -UPC
 
-Enter a valid PLU code. You can search $vegetableupc for a valid code.
+Enter a valid PLU code. You can search $VegetablePLU for a valid code.
 
 ```yaml
 Type: Int32

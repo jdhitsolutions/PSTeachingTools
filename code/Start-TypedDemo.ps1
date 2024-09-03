@@ -1,33 +1,33 @@
-#requires -modules @{ModuleName='PSReadline';ModuleVersion='2.0.0'}
+#requires -modules @{ModuleName='PSReadLine';ModuleVersion='2.0.0'}
 
 Function Start-TypedDemo {
-    [cmdletBinding(DefaultParameterSetName = "Random")]
+    [CmdletBinding(DefaultParameterSetName = "Random")]
     [Alias("std")]
 
     Param(
         [Parameter(Position = 0, Mandatory = $True, HelpMessage = "Enter the name of a text file with your demo commands")]
         [ValidateScript( { Test-Path $_ })]
-        [string]$File,
+        [String]$File,
         [ValidateScript( {$_ -gt 0 })]
         [Parameter(Mandatory,ParameterSetName = "Static")]
-        [int]$Pause,
+        [Int]$Pause,
         [Parameter(ParameterSetName = "Random")]
         [ValidateScript( { $_ -gt 0 })]
-        [int]$RandomMinimum = 50,
+        [Int]$RandomMinimum = 50,
         [Parameter(ParameterSetName = "Random")]
         [ValidateScript( { $_ -gt 0 })]
-        [int]$RandomMaximum = 110,
+        [Int]$RandomMaximum = 110,
         [Parameter(ParameterSetName = "Random")]
         [parameter(HelpMessage = "Enter the path for a transcript file")]
         [ValidateNotNullOrEmpty()]
-        [string]$Transcript,
-        [switch]$NoExecute,
-        [switch]$NewSession
+        [String]$Transcript,
+        [Switch]$NoExecute,
+        [Switch]$NewSession
     )
 
     #this is an internal function so I'm not worried about the name
     Function PauseIt {
-        [cmdletbinding()]
+        [CmdletBinding()]
         Param()
         Write-Verbose "PauseIt"
 
@@ -35,8 +35,8 @@ Function Start-TypedDemo {
         $Running = $true
         #keep looping until a key is pressed
         While ($Running) {
-            if ($host.ui.RawUi.KeyAvailable) {
-                $key = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+            if ($host.UI.RawUI.KeyAvailable) {
+                $key = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
                 if ($key) {
                     $Running = $False
                     #check the value and if it is q or ESC, then bail out
@@ -51,14 +51,14 @@ Function Start-TypedDemo {
     } #PauseIt function
 
     Function EnterCommand {
-        [cmdletbinding()]
+        [CmdletBinding()]
         Param()
         $typing = $true
         #keep looping until a key is pressed
         $list = [System.Collections.Generic.list[object]]::new()
         do {
-            if ($host.ui.RawUi.KeyAvailable) {
-                $key = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+            if ($host.UI.RawUI.KeyAvailable) {
+                $key = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
                 if ($key.VirtualKeyCode -eq 13) {
                     $typing = $False
                 } #if return
@@ -79,7 +79,7 @@ Function Start-TypedDemo {
             "$(prompt)$Cmd" | Out-File -FilePath $Transcript -Encoding ascii -ErrorAction Stop -Append
             $result | Out-File -FilePath $Transcript -Encoding ascii -ErrorAction Stop -Append
         }
-        #add to PSReadlineHistory
+        #add to PSReadLineHistory
         [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($cmd)
 
         $h = @{
@@ -88,24 +88,24 @@ Function Start-TypedDemo {
             StartExecutionTime = $start
         }
 
-        [datetime]$end = [datetime]::now
+        [DateTime]$end = [DateTime]::now
         $h.Add("EndExecutionTime", $end)
         $h.Add("ExecutionStatus", "Completed")
-        if ($psversiontable.psversion.major -eq 7) {
+        if ($PSVersionTable.PSVersion.major -eq 7) {
             $h.add("Duration", (New-TimeSpan -Start $start -End $End))
         }
-        [pscustomobject]$h | Add-History
+        [PSCustomObject]$h | Add-History
 
     } #enterCommand function
 
     Function WriteWord {
-        [cmdletbinding()]
-        Param([string]$command)
+        [CmdletBinding()]
+        Param([String]$command)
 
         Write-Debug $command
         Function writechar {
-            [cmdletbinding()]
-            Param([string]$word, [string]$color)
+            [CmdletBinding()]
+            Param([String]$word, [String]$color)
 
             for ($i = 0; $i -lt $word.length; $i++) {
 
@@ -187,7 +187,7 @@ Function Start-TypedDemo {
         $z = New-Object System.Management.Automation.Host.Coordinates 0, 0
 
         #get a header based on what version you are using.
-        Switch -Regex ($PSVersionTable.PSVersion.toString()) {
+        Switch -Regex ($PSVersionTable.PSVersion.ToString()) {
             "^5.1" {
                 $header = @"
 Windows PowerShell
@@ -199,10 +199,10 @@ Try the new cross-platform PowerShell https://aka.ms/pscore6
             } #5.1
             "^7\." {
                 $header = @"
-PowerShell $($psversiontable.psversion.tostring())
+PowerShell $($PSVersionTable.PSVersion.ToString())
 Copyright (c) Microsoft Corporation. All rights reserved.
 
-https://aka.ms/powershell
+https://aka.ms/PowerShell
 Type 'help' to get help.
 
 "@
@@ -254,7 +254,7 @@ Start time: $(Get-Date)
       #define a scriptblock to get typing interval
       Write-Verbose "Defining interval scriptblock"
       $interval = {
-          if ($pscmdlet.ParameterSetName -eq "Random") {
+          if ($PSCmdlet.ParameterSetName -eq "Random") {
               #get a random pause interval
               Get-Random -Minimum $RandomMinimum -Maximum $RandomMaximum
           }
@@ -310,7 +310,7 @@ Start time: $(Get-Date)
                 "$(prompt)$Command" | Out-File -FilePath $Transcript -Encoding ascii -ErrorAction Stop -Append
             }
             if (-NOT $NoExecute) {
-                [datetime]$start = [datetime]::now
+                [DateTime]$start = [DateTime]::now
                 $h = @{
                     PSTypeName         = "Microsoft.PowerShell.Commands.HistoryInfo"
                     CommandLine        = $Command
@@ -323,17 +323,17 @@ Start time: $(Get-Date)
                     $rex | Out-File -FilePath $Transcript -Encoding ascii -Append -ErrorAction stop
                 }
 
-                #Add to PSReadline History
+                #Add to PSReadLine History
                 [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($command)
 
                 #Add to command history
-                [datetime]$end = [datetime]::now
+                [DateTime]$end = [DateTime]::now
                 $h.Add("EndExecutionTime", $end)
                 $h.Add("ExecutionStatus", "Completed")
-                if ($psversiontable.psversion.major -eq 7) {
+                if ($PSVersionTable.PSVersion.major -eq 7) {
                     $h.add("Duration", (New-TimeSpan -Start $start -End $End))
                 }
-                [pscustomobject]$h | Add-History
+                [PSCustomObject]$h | Add-History
             }
             else {
                 Microsoft.PowerShell.Utility\Write-Host $command -ForegroundColor Cyan
@@ -346,7 +346,7 @@ Start time: $(Get-Date)
             $StartMulti = $True
             Write-Debug "initializing `$multi"
             #define a variable to hold the multiline expression
-            [string]$multi = @'
+            [String]$multi = @'
 
 '@
         } #elseif
@@ -367,7 +367,7 @@ Start time: $(Get-Date)
 
                 else {
                    # Microsoft.PowerShell.Utility\Write-Host $command[$i] -NoNewline
-                  write-host ""
+                  Write-Host ""
                 } #else
                 Start-Sleep -Milliseconds $(&$Interval)
                 #only check for a pipe if we're not at the last character
@@ -406,7 +406,7 @@ Start time: $(Get-Date)
                 "$(prompt)$cmd" | Out-File -path $Transcript -Encoding ascii -ErrorAction Stop -Append
             }
             if (-NOT $NoExecute) {
-                [datetime]$start = [datetime]::now
+                [DateTime]$start = [DateTime]::now
                 $h = @{
                     CommandLine        = $cmd
                     StartExecutionTime = $start
@@ -417,17 +417,17 @@ Start time: $(Get-Date)
                 if ($RunningTranscript) {
                     $rex | Out-File -FilePath $Transcript -Encoding ascii -Append -ErrorAction stop
                 }
-                #Add clean command to PSReadline History
+                #Add clean command to PSReadLine History
                 [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($cmd)
 
                 #Add to command history
-                [datetime]$end = [datetime]::now
+                [DateTime]$end = [DateTime]::now
                 $h.Add("EndExecutionTime", $end)
                 $h.Add("ExecutionStatus", "Completed")
-                if ($psversiontable.psversion.major -eq 7) {
+                if ($PSVersionTable.PSVersion.major -eq 7) {
                     $h.add("Duration", (New-TimeSpan -Start $start -End $end))
                 }
-                [pscustomobject]$h | Add-History
+                [PSCustomObject]$h | Add-History
             }
             else {
                 Microsoft.PowerShell.Utility\Write-Host $cmd -ForegroundColor Cyan
@@ -458,7 +458,7 @@ Start time: $(Get-Date)
                 "$(prompt)$cmd" | Out-File -path $Transcript -Encoding ascii -ErrorAction Stop -Append
             }
             if (-NOT $NoExecute) {
-                [datetime]$start = [datetime]::now
+                [DateTime]$start = [DateTime]::now
                 $h = @{
                     CommandLine        = $cmd
                     StartExecutionTime = $start
@@ -469,17 +469,17 @@ Start time: $(Get-Date)
                 if ($RunningTranscript) {
                     $rex | Out-File -FilePath $Transcript -Encoding ascii -Append -ErrorAction stop
                 }
-                #Add clean command to PSReadline History
+                #Add clean command to PSReadLine History
                 [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($cmd)
 
                 #Add to command history
-                [datetime]$end = [datetime]::now
+                [DateTime]$end = [DateTime]::now
                 $h.Add("EndExecutionTime", $end)
                 $h.Add("ExecutionStatus", "Completed")
-                if ($psversiontable.psversion.major -eq 7) {
+                if ($PSVersionTable.PSVersion.major -eq 7) {
                     $h.add("Duration", (New-TimeSpan -Start $start -End $end))
                 }
-                [pscustomobject]$h | Add-History
+                [PSCustomObject]$h | Add-History
             }
             else {
                 Microsoft.PowerShell.Utility\Write-Host $cmd -ForegroundColor Cyan

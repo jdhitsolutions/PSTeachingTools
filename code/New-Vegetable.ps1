@@ -1,5 +1,5 @@
 Function New-Vegetable {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     [OutputType("none", "PSTeachingTools.PSVegetable")]
     [alias("nveg")]
 
@@ -10,8 +10,8 @@ Function New-Vegetable {
             HelpMessage = "What is the vegetable name?",
             ValueFromPipelineByPropertyName
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$Name,
+        [ValidateNotNullOrEmpty()]
+        [String]$Name,
 
         [Parameter(
             Position = 1,
@@ -19,42 +19,42 @@ Function New-Vegetable {
             HelpMessage = "What is the vegetable color?",
             ValueFromPipelineByPropertyName
         )]
-        [ValidateNotNullorEmpty()]
+        [ValidateNotNullOrEmpty()]
         [PSTeachingTools.VegColor]$Color,
 
         [Parameter(ValueFromPipelineByPropertyName)]
         [ValidateRange(1, 20)]
-        [int]$Count = 1,
+        [Int]$Count = 1,
 
         [Parameter(ValueFromPipelineByPropertyName)]
         [alias("IsRoot")]
-        [switch]$Root,
+        [Switch]$Root,
 
         [Parameter(
             Mandatory,
             HelpMessage = "Enter a valid PLU code",
             ValueFromPipelineByPropertyName
         )]
-        [int]$UPC,
+        [Int]$UPC,
 
-        [switch]$Passthru
+        [Switch]$PassThru
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
     }
 
     Process {
         if ($PSCmdlet.ShouldProcess($Name)) {
-            Write-Verbose "[PROCESS] Creating $name"
+            Write-Verbose "[PROCESS] Creating [$UPC] $name Color: $color RootVegetable: $Root"
             $veggie = [PSTeachingTools.PSVegetable]::new($name, $Root, $color, $UPC)
 
             if ($veggie) {
                 $veggie.count = $Count
-                Write-Verbose "Adding to global listget-v"
-                $global:myvegetables.Add($veggie)
+                Write-Verbose "Adding to global list"
+                $global:MyVegetables.Add($veggie)
 
-                if ($passthru) {
+                if ($PassThru) {
                     Write-Output $veggie
                 }
             }
@@ -65,6 +65,6 @@ Function New-Vegetable {
     } #process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }

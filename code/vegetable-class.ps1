@@ -1,4 +1,4 @@
-[cmdletbinding()]
+[CmdletBinding()]
 Param()
 #region class definitions
 
@@ -10,11 +10,11 @@ Try {
 }
 Catch {
     Write-Verbose "Adding class definition"
-    Add-Type -path $PsscriptRoot\psteachingtools.cs
+    Add-Type -path $PSScriptRoot\psteachingtools.cs
 }
 
-#this is the previous PowerShell class definition of the vegetable class
 <#
+#this is the previous PowerShell class definition of the vegetable class
 
 #enumerations for a few of the class properties
 Enum Status {
@@ -42,9 +42,9 @@ Enum VegColor {
 Class Vegetable {
 
     #properties
-    [string]$Name
-    [int]$Count = (Get-Random -minimum 1 -maximum 20)
-    [int]$UPC
+    [String]$Name
+    [Int]$Count = (Get-Random -minimum 1 -maximum 20)
+    [Int]$UPC
     [Status]$CookedState
     [boolean]$IsRoot
     [boolean]$IsPeeled
@@ -60,7 +60,7 @@ Class Vegetable {
     }
 
     #constructors
-    Vegetable ([string]$Name, [boolean]$IsRoot, [vegcolor]$Color, [int]$UPC) {
+    Vegetable ([String]$Name, [boolean]$IsRoot, [vegcolor]$Color, [Int]$UPC) {
         $this.name = $Name
         $this.IsRoot = $IsRoot
         $this.Color = $Color

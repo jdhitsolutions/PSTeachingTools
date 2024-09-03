@@ -1,5 +1,5 @@
 Function Get-Vegetable {
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType("PSTeachingTools.PSVegetable")]
     [alias("gveg")]
 
@@ -9,27 +9,27 @@ Function Get-Vegetable {
             ValueFromPipeline,
             ValueFromPipelineByPropertyName
         )]
-        [string]$Name,
+        [String]$Name,
 
-        [switch]$RootOnly
+        [Switch]$RootOnly
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
     }
 
     Process {
-        #verify the myvegetables array exists
-        if ( $global:myvegetables.count -gt 0) {
-            Write-Verbose "[PROCESS] Processing $($global:myvegetables.count) items."
+        #verify the MyVegetables array exists
+        if ( $global:MyVegetables.count -gt 0) {
+            Write-Verbose "[PROCESS] Processing $($global:MyVegetables.count) items."
             if ($name -AND $RootOnly) {
                 Write-Verbose "[PROCESS] Getting vegetable $name where it is a root vegetable"
-                ($global:myvegetables).where( { ($_.IsRoot) -And ($_.name -like $name) })
-                # $global:myvegetables | where {($_.IsRoot) -And ($_.name -like $name)}
+                ($global:MyVegetables).where( { ($_.IsRoot) -And ($_.name -like $name) })
+                # $global:MyVegetables | where {($_.IsRoot) -And ($_.name -like $name)}
             }
             elseif ($Name) {
                 Write-Verbose "[PROCESS] Getting vegetable $name"
-                $result = ($global:myvegetables).where( { $_.name -like $name })
+                $result = ($global:MyVegetables).where( { $_.name -like $name })
                 if ($result) {
                     $result
                 }
@@ -39,19 +39,19 @@ Function Get-Vegetable {
             }
             elseif ($RootOnly) {
                 Write-Verbose "[PROCESS] Getting root vegetables only"
-                ($global:myvegetables).where( { $_.IsRoot })
+                ($global:MyVegetables).where( { $_.IsRoot })
             }
             else {
                 Write-Verbose "[PROCESS] Getting all vegetables"
-                $global:myvegetables
+                $global:MyVegetables
             }
-        } #if myvegetables
+        } #if MyVegetables
         else {
             Write-Warning "Failed to find vegetable source."
         }
     } #Process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     }
 }

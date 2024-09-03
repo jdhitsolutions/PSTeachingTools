@@ -65,9 +65,9 @@
         <TypeName>PSTeachingTools.PSVegetable</TypeName>
       </ViewSelectedBy>
       <GroupBy>
-       <PropertyName>CookedState</PropertyName>
-       <Label>CookingState</Label>
-       </GroupBy>
+        <PropertyName>CookedState</PropertyName>
+        <Label>CookingState</Label>
+      </GroupBy>
       <TableControl>
         <TableHeaders>
           <TableColumnHeader>
@@ -101,6 +101,53 @@
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Count</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <!--Created 09/03/2024 11:19:23 by PROSPERO\Jeff-->
+      <Name>color</Name>
+      <ViewSelectedBy>
+        <TypeName>PSTeachingTools.PSVegetable</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <!--Delete the AutoSize node if you want to use the defined widths.-->
+        <AutoSize />
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Name</Label>
+            <Width>15</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Count</Label>
+            <Width>8</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>State</Label>
+            <Width>10</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <!--
+            By default the entries use property names, but you can replace them with scriptblocks.
+            <ScriptBlock>$_.foo /1mb -as [int]</ScriptBlock>
+-->
+              <TableColumnItem>
+                <ScriptBlock>"$($AnsiVegColor[$($_.color.ToString())])$($_.Name)$([char]27)[0m"</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Count</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>State</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

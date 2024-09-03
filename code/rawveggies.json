@@ -1,155 +1,155 @@
 [
     {
-        "Count":  12,
-        "Name":  "corn",
-        "UPC":  4078,
-        "Cookingstate":  6,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  3
+        "Count": 12,
+        "Name": "Corn",
+        "UPC": 4078,
+        "CookingState": 6,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 3
     },
     {
-        "Count":  4,
-        "Name":  "tomato",
-        "UPC":  4064,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  1
+        "Count": 4,
+        "Name": "Tomato",
+        "UPC": 4064,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 1
     },
     {
-        "Count":  11,
-        "Name":  "cucumber",
-        "UPC":  4062,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 11,
+        "Name": "Cucumber",
+        "UPC": 4062,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     },
     {
-        "Count":  10,
-        "Name":  "carrot",
-        "UPC":  4562,
-        "Cookingstate":  0,
-        "Root":  true,
-        "IsPeeled":  false,
-        "Color":  4
+        "Count": 10,
+        "Name": "Carrot",
+        "UPC": 4562,
+        "CookingState": 0,
+        "Root": true,
+        "IsPeeled": false,
+        "Color": 4
     },
     {
-        "Count":  13,
-        "Name":  "radish",
-        "UPC":  4089,
-        "Cookingstate":  0,
-        "Root":  true,
-        "IsPeeled":  false,
-        "Color":  1
+        "Count": 13,
+        "Name": "Radish",
+        "UPC": 4089,
+        "CookingState": 0,
+        "Root": true,
+        "IsPeeled": false,
+        "Color": 1
     },
     {
-        "Count":  14,
-        "Name":  "peas",
-        "UPC":  4674,
-        "Cookingstate":  2,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 14,
+        "Name": "Peas",
+        "UPC": 4674,
+        "CookingState": 2,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     },
     {
-        "Count":  12,
-        "Name":  "turnip",
-        "UPC":  4811,
-        "Cookingstate":  1,
-        "Root":  true,
-        "IsPeeled":  false,
-        "Color":  5
+        "Count": 12,
+        "Name": "Turnip",
+        "UPC": 4811,
+        "CookingState": 1,
+        "Root": true,
+        "IsPeeled": false,
+        "Color": 5
     },
     {
-        "Count":  18,
-        "Name":  "russet potato",
-        "UPC":  4725,
-        "Cookingstate":  4,
-        "Root":  true,
-        "IsPeeled":  false,
-        "Color":  6
+        "Count": 18,
+        "Name": "Russet Potato",
+        "UPC": 4725,
+        "CookingState": 4,
+        "Root": true,
+        "IsPeeled": false,
+        "Color": 6
     },
     {
-        "Count":  15,
-        "Name":  "broccoli",
-        "UPC":  4060,
-        "Cookingstate":  2,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 15,
+        "Name": "Broccoli",
+        "UPC": 4060,
+        "CookingState": 2,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     },
     {
-        "Count":  7,
-        "Name":  "zucchini",
-        "UPC":  4067,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 7,
+        "Name": "Zucchini",
+        "UPC": 4067,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     },
     {
-        "Count":  4,
-        "Name":  "spinach",
-        "UPC":  4090,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 4,
+        "Name": "Spinach",
+        "UPC": 4090,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     },
     {
-        "Count":  7,
-        "Name":  "cauliflower",
-        "UPC":  4572,
-        "Cookingstate":  2,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  2
+        "Count": 7,
+        "Name": "Cauliflower",
+        "UPC": 4572,
+        "CookingState": 2,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 2
     },
     {
-        "Count":  17,
-        "Name":  "habanero pepper",
-        "UPC":  3125,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  4
+        "Count": 17,
+        "Name": "Habanero Pepper",
+        "UPC": 3125,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 4
     },
     {
-        "Count":  16,
-        "Name":  "Anaheim pepper",
-        "UPC":  4677,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 16,
+        "Name": "Anaheim Pepper",
+        "UPC": 4677,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     },
     {
-        "Count":  19,
-        "Name":  "red bell pepper",
-        "UPC":  4088,
-        "Cookingstate":  3,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  1
+        "Count": 19,
+        "Name": "Red Bell Pepper",
+        "UPC": 4088,
+        "CookingState": 3,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 1
     },
     {
-        "Count":  6,
-        "Name":  "eggplant",
-        "UPC":  4081,
-        "Cookingstate":  4,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  5
+        "Count": 6,
+        "Name": "Eggplant",
+        "UPC": 4081,
+        "CookingState": 4,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 5
     },
     {
-        "Count":  2,
-        "Name":  "endive",
-        "UPC":  4604,
-        "Cookingstate":  0,
-        "Root":  false,
-        "IsPeeled":  false,
-        "Color":  0
+        "Count": 2,
+        "Name": "Endive",
+        "UPC": 4604,
+        "CookingState": 0,
+        "Root": false,
+        "IsPeeled": false,
+        "Color": 0
     }
 ]
