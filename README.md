@@ -7,10 +7,10 @@
 Install this module from the PowerShell Gallery:
 
 ```powershell
-Install-Module PSTeachingTools [-scope CurrentUser]
+Install-Module PSTeachingTools [-scope AllUsers]
 ```
 
-If you are installing this module on PowerShell 7.x, you may need to include the `-scope CurrentUser` parameter. __Do Not__ attempt to download and install from this repository unless you are an experienced PowerShell user.
+*Do not attempt to download and install from this repository unless you are an experienced PowerShell user.* Install the module from the PowerShell Gallery as shown above.
 
 The module should work in both Windows PowerShell and PowerShell 7, including cross-platform. Please post an issue with any feedback, suggestions, or problems.
 
@@ -57,7 +57,7 @@ PS C:\> [PSTeachingTools.VegStatus]::Sauteed
 Sauteed
 ```
 
-The PSVegetable object has a custom format file with defined table views.
+The `PSVegetable` object has a custom format file with defined table views.
 
 ```powershell
 PS C:\> Get-FormatView PSTeachingTools.PSVegetable
@@ -69,6 +69,12 @@ Format    Name
 Table     default
 Table     State
 Table     color
+```
+
+This means you can run a command like:
+
+```powershell
+PS C:\> Get-Vegetable | Format-Table -View color
 ```
 
 The `Color` view relies on ANSI values stored in the `$AnsiVegColor` hashtable.
@@ -86,7 +92,8 @@ The module also includes a function for simulating an interactive PowerShell con
 Starting in v4.1.0, you can insert `<live>` into your demo file. When `Start-TypedDemo` reaches this line, it will let you enter a live command. Enter a command carefully and without error. Backspaces will break this step. Due to timing, the first key stroke may not be detected. This feature should be considered *experimental*.
 
 Read command help for [Start-TypedDemo](docs/Start-TypedDemo.md). A [sample file](samples/sampledemo.txt) is included in this module.
-Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+
+Learn more about PowerShell: [http://jdhitsolutions.com/blog/essential-powershell-resources/](http://jdhitsolutions.com/blog/essential-powershell-resources/)
 
 ## Sponsorship
 
